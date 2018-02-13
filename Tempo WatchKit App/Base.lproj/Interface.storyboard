@@ -1,16 +1,92 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kUw-eH-fhd">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Interface Controller-->
+        <!--Main Menu Controller-->
+        <scene sceneID="HtP-yN-fKN">
+            <objects>
+                <controller id="kUw-eH-fhd" customClass="MainMenuController" customModule="Tempo_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="TEMPO" textAlignment="center" id="OYM-eN-d6Y">
+                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                        </label>
+                        <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
+                        <label width="136" height="26" alignment="left" text="Beep Interval" textAlignment="center" id="evM-we-q8p">
+                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                        </label>
+                        <label width="1" alignment="left" text="0.00 s" textAlignment="center" id="uhV-Lj-z17">
+                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="28"/>
+                        </label>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="BEGIN" id="UNG-nw-0iK">
+                            <connections>
+                                <action selector="beginPressed" destination="kUw-eH-fhd" id="FhA-V5-pHe"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="beepIntervalLabel" destination="uhV-Lj-z17" id="tDr-Us-waw"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-16" y="345"/>
+        </scene>
+        <!--TimerController-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller identifier="TimerController" id="AgC-eL-Hgc" customClass="TimerController" customModule="Tempo_WatchKit_Extension">
+                    <items>
+                        <label width="1" height="25" alignment="center" text="Beep Time: 0.00s" textAlignment="center" id="Qs2-ja-Etb">
+                            <color key="textColor" red="0.73652116300000003" green="0.74381345180000003" blue="0.74381345180000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <label width="136" height="82" alignment="center" text="00:00.00" textAlignment="center" id="C5X-oH-htA">
+                            <fontDescription key="font" type="system" pointSize="33"/>
+                        </label>
+                        <button width="1" alignment="center" verticalAlignment="bottom" hidden="YES" title="STOP" id="zaV-wW-f2F">
+                            <color key="backgroundColor" red="0.96844327450000001" green="0.13130376869999999" blue="0.11214169760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="stopPressed" destination="AgC-eL-Hgc" id="QK4-ly-BIl"/>
+                            </connections>
+                        </button>
+                        <group width="1" alignment="left" verticalAlignment="bottom" id="9KU-QD-XHF">
+                            <items>
+                                <button width="0.5" alignment="left" verticalAlignment="bottom" title="START" id="LY4-Lz-k3g">
+                                    <color key="backgroundColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="startPressed" destination="AgC-eL-Hgc" id="fh6-fC-jWA"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="right" title="RESET" id="mYE-nX-TPN">
+                                    <connections>
+                                        <action selector="resetButtonPressed" destination="AgC-eL-Hgc" id="JE9-E8-sBh"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="beepTimeLabel" destination="Qs2-ja-Etb" id="KcT-wa-IvG"/>
+                        <outlet property="resetButton" destination="mYE-nX-TPN" id="CAu-7N-OPD"/>
+                        <outlet property="startButton" destination="LY4-Lz-k3g" id="0Q2-XX-z2u"/>
+                        <outlet property="startButtonGroup" destination="9KU-QD-XHF" id="rqa-jw-hkc"/>
+                        <outlet property="stopButton" destination="zaV-wW-f2F" id="CBB-HW-2Gn"/>
+                        <outlet property="timeLabel" destination="C5X-oH-htA" id="JzC-BN-hEq"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="346"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -31,7 +107,7 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Tempo_WatchKit_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>
