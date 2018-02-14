@@ -7,11 +7,14 @@
 //
 
 import WatchKit
+import AVFoundation
+
+var audioPlayer = AVAudioPlayer()
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        AudioManager.shared.preparePlayer()
     }
 
     func applicationDidBecomeActive() {

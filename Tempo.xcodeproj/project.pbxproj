@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E308B43F2034713100FB1EE5 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E36B1A9120333FCA00F21269 /* beep.wav */; };
+		E308B4412034761500FB1EE5 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B4402034761500FB1EE5 /* WorkoutManager.swift */; };
+		E308B443203485B200FB1EE5 /* UtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B442203485B200FB1EE5 /* UtilHelper.swift */; };
 		E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893D20321ABF004547E2 /* AppDelegate.swift */; };
 		E342894020321ABF004547E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893F20321ABF004547E2 /* ViewController.swift */; };
 		E342894320321ABF004547E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E342894120321ABF004547E2 /* Main.storyboard */; };
@@ -18,7 +21,6 @@
 		E342895C20321ABF004547E2 /* Tempo WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E342895B20321ABF004547E2 /* Tempo WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E342896120321ABF004547E2 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342896020321ABF004547E2 /* TimerController.swift */; };
 		E342896320321ABF004547E2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342896220321ABF004547E2 /* ExtensionDelegate.swift */; };
-		E342896520321ABF004547E2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342896420321ABF004547E2 /* NotificationController.swift */; };
 		E342896720321ABF004547E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E342896620321ABF004547E2 /* Assets.xcassets */; };
 		E342897820322F2E004547E2 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342897720322F2E004547E2 /* MainMenuController.swift */; };
 		E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B1A8F20333C4D00F21269 /* AudioManager.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E308B4402034761500FB1EE5 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		E308B442203485B200FB1EE5 /* UtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilHelper.swift; sourceTree = "<group>"; };
 		E342893A20321ABF004547E2 /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342893D20321ABF004547E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E342893F20321ABF004547E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +88,6 @@
 		E342895B20321ABF004547E2 /* Tempo WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Tempo WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342896020321ABF004547E2 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
 		E342896220321ABF004547E2 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		E342896420321ABF004547E2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		E342896620321ABF004547E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E342896820321ABF004547E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E342896920321ABF004547E2 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -92,8 +95,6 @@
 		E36B1A8F20333C4D00F21269 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E36B1A9120333FCA00F21269 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		E3E537D22032A12C00A3D8A7 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
-		E3EA8CF620337F3B00F252FC /* Tempo WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tempo WatchKit App.entitlements"; sourceTree = "<group>"; };
-		E3EA8CF720337F7E00F252FC /* Tempo WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tempo WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +151,7 @@
 		E342895020321ABF004547E2 /* Tempo WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				E3EA8CF620337F3B00F252FC /* Tempo WatchKit App.entitlements */,
+				E36B1A9120333FCA00F21269 /* beep.wav */,
 				E342895120321ABF004547E2 /* Interface.storyboard */,
 				E342895420321ABF004547E2 /* Assets.xcassets */,
 				E342895620321ABF004547E2 /* Info.plist */,
@@ -161,13 +162,10 @@
 		E342895F20321ABF004547E2 /* Tempo WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E3EA8CF720337F7E00F252FC /* Tempo WatchKit Extension.entitlements */,
-				E36B1A9120333FCA00F21269 /* beep.wav */,
 				E36B1A8E20333C3000F21269 /* Helpers */,
 				E3E537D12032A11800A3D8A7 /* Extensions */,
 				E342896020321ABF004547E2 /* TimerController.swift */,
 				E342896220321ABF004547E2 /* ExtensionDelegate.swift */,
-				E342896420321ABF004547E2 /* NotificationController.swift */,
 				E342896620321ABF004547E2 /* Assets.xcassets */,
 				E342896820321ABF004547E2 /* Info.plist */,
 				E342896920321ABF004547E2 /* PushNotificationPayload.apns */,
@@ -180,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				E36B1A8F20333C4D00F21269 /* AudioManager.swift */,
+				E308B4402034761500FB1EE5 /* WorkoutManager.swift */,
+				E308B442203485B200FB1EE5 /* UtilHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -276,6 +276,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.BackgroundModes.watchos.extension = {
 								enabled = 1;
 							};
 						};
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E308B43F2034713100FB1EE5 /* beep.wav in Resources */,
 				E342894820321ABF004547E2 /* LaunchScreen.storyboard in Resources */,
 				E342894520321ABF004547E2 /* Assets.xcassets in Resources */,
 				E342894320321ABF004547E2 /* Main.storyboard in Resources */,
@@ -349,7 +353,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */,
-				E342896520321ABF004547E2 /* NotificationController.swift in Sources */,
+				E308B443203485B200FB1EE5 /* UtilHelper.swift in Sources */,
+				E308B4412034761500FB1EE5 /* WorkoutManager.swift in Sources */,
 				E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */,
 				E342897820322F2E004547E2 /* MainMenuController.swift in Sources */,
 				E342896320321ABF004547E2 /* ExtensionDelegate.swift in Sources */,
@@ -511,7 +516,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit Extension/Tempo WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				INFOPLIST_FILE = "Tempo WatchKit Extension/Info.plist";
@@ -530,7 +534,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit Extension/Tempo WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				INFOPLIST_FILE = "Tempo WatchKit Extension/Info.plist";
@@ -550,7 +553,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit App/Tempo WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				IBSC_MODULE = Tempo_WatchKit_Extension;
@@ -570,7 +572,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit App/Tempo WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				IBSC_MODULE = Tempo_WatchKit_Extension;

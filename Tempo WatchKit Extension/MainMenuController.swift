@@ -35,7 +35,7 @@ class MainMenuController: WKInterfaceController {
     }
     
     override func willActivate() {
-        crownSequencer.focus()
+        WorkoutManager.shared.endWorkout()
     }
     
     @IBAction func secondsPickerValueChanged(_ value: Int) {

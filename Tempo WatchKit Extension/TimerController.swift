@@ -21,6 +21,7 @@ class TimerController: WKInterfaceController {
             beepTimeLabel.setText("Beep Time: \(interval) s")
             self.interval = interval
         }
+        
     }
     
     @IBAction func startPressed() {
@@ -51,37 +52,19 @@ class TimerController: WKInterfaceController {
         counter += 0.01
         if counter.remainder(dividingBy: interval).rounded(toPlaces: 2) == 0 {
             WKInterfaceDevice.current().play(.failure)
-            //AudioManager.shared.playBeep()
+            AudioManager.shared.playBeep()
+            AudioManager.shared.audioPlayer.prepareToPlay()
         }
-        let timeSting = stringFromTimeInterval(interval: counter)
+        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
         timeLabel.setAttributedText(timeSting)
     }
     
-    private func stringFromTimeInterval(interval: TimeInterval) -> NSAttributedString {
-        
-        let ti = NSInteger(interval)
-        let ms = Int((interval.truncatingRemainder(dividingBy: 1)) * 100)
-        let seconds = ti % 60
-        let minutes = (ti / 60) % 60
-        let timeString = NSString(format: "%0.2d:%0.2d.%0.2d",minutes,seconds,ms)
-        
-        let fontAttribute = [
-            NSAttributedStringKey.font: UIFont.monospacedDigitSystemFont(ofSize: 33, weight: .regular)
-        ]
-        let attributedTimeString = NSAttributedString(
-            string: timeString as String,
-            attributes: fontAttribute
-        )
-        return attributedTimeString
-    }
-    
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        WorkoutManager.shared.startWorkout()
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
 
