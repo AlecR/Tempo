@@ -1,7 +1,7 @@
 
 import WatchKit
 import Foundation
-
+import AVFoundation
 
 class TimerController: WKInterfaceController {
 
@@ -10,6 +10,7 @@ class TimerController: WKInterfaceController {
     @IBOutlet var stopButton: WKInterfaceButton!
     @IBOutlet var timeLabel: WKInterfaceLabel!
     @IBOutlet var resetButton: WKInterfaceButton!
+    
     var timer: Timer!
     var counter = 0.0
     var interval = 0.0
@@ -49,7 +50,8 @@ class TimerController: WKInterfaceController {
     @objc func updateCounter() {
         counter += 0.01
         if counter.remainder(dividingBy: interval).rounded(toPlaces: 2) == 0 {
-            WKInterfaceDevice.current().play(.notification)
+            WKInterfaceDevice.current().play(.failure)
+            //AudioManager.shared.playBeep()
         }
         let timeSting = stringFromTimeInterval(interval: counter)
         timeLabel.setAttributedText(timeSting)

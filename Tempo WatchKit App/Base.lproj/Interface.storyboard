@@ -19,16 +19,27 @@
             <objects>
                 <controller id="kUw-eH-fhd" customClass="MainMenuController" customModule="Tempo_WatchKit_Extension">
                     <items>
-                        <label width="1" alignment="left" text="TEMPO" textAlignment="center" id="OYM-eN-d6Y">
+                        <label width="1" alignment="center" text="TEMPO" textAlignment="center" id="OYM-eN-d6Y">
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                         </label>
                         <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
-                        <label width="136" height="26" alignment="left" text="Beep Interval" textAlignment="center" id="evM-we-q8p">
+                        <label width="136" height="26" alignment="center" text="Beep Interval" textAlignment="center" id="evM-we-q8p">
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         </label>
-                        <label width="1" alignment="left" text="0.00 s" textAlignment="center" id="uhV-Lj-z17">
-                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="28"/>
-                        </label>
+                        <group alignment="center" id="Gy4-vh-6Wl">
+                            <items>
+                                <picker width="66" height="1" alignment="left" focusStyle="sequence" id="OhH-xh-MOI">
+                                    <connections>
+                                        <action selector="secondsPickerValueChanged:" destination="kUw-eH-fhd" id="fb1-6U-7ec"/>
+                                    </connections>
+                                </picker>
+                                <picker width="66" height="1" alignment="left" focusStyle="sequence" id="SEy-26-H0q">
+                                    <connections>
+                                        <action selector="millisecondsPickerValueChanged:" destination="kUw-eH-fhd" id="kHD-1g-U4D"/>
+                                    </connections>
+                                </picker>
+                            </items>
+                        </group>
                         <button width="1" alignment="left" verticalAlignment="bottom" title="BEGIN" id="UNG-nw-0iK">
                             <connections>
                                 <action selector="beginPressed" destination="kUw-eH-fhd" id="FhA-V5-pHe"/>
@@ -36,7 +47,9 @@
                         </button>
                     </items>
                     <connections>
-                        <outlet property="beepIntervalLabel" destination="uhV-Lj-z17" id="tDr-Us-waw"/>
+                        <outlet property="beginButton" destination="UNG-nw-0iK" id="nCD-q8-gvQ"/>
+                        <outlet property="millisecondsPicker" destination="SEy-26-H0q" id="n1h-ty-G2c"/>
+                        <outlet property="secondsPicker" destination="OhH-xh-MOI" id="2SM-xX-M14"/>
                     </connections>
                 </controller>
             </objects>
@@ -102,14 +115,14 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="220" y="643"/>
+            <point key="canvasLocation" x="-16" y="643"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Tempo_WatchKit_App" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
+            <point key="canvasLocation" x="220" y="643"/>
         </scene>
     </scenes>
 </document>

@@ -1,56 +1,53 @@
-
 import WatchKit
 import Foundation
 
 class MainMenuController: WKInterfaceController {
+
+    @IBOutlet var beginButton: WKInterfaceButton!
     
-    @IBOutlet var beepIntervalLabel: WKInterfaceLabel!
+    @IBOutlet var secondsPicker: WKInterfacePicker!
+    @IBOutlet var millisecondsPicker: WKInterfacePicker!
     
-    var beepInterval = 0.0
+    var secondsValue = 0.0
+    var millisecondsValue = 0.0
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        crownSequencer.delegate = self
-        crownSequencer.focus()
+        
+        var secondsValues = [WKPickerItem]()
+        var millisecondsValues = [WKPickerItem]()
+        
+        for seconds in 0...999 {
+            let pickerItem = WKPickerItem()
+            pickerItem.title = "\(seconds)"
+            pickerItem.caption = "Seconds"
+            secondsValues.append(pickerItem)
+        }
+        
+        for milliseconds in stride(from: 0, to: 96, by: 5) {
+            let pickerItem = WKPickerItem()
+            pickerItem.title = "\(milliseconds)"
+            pickerItem.caption = "Milliseconds"
+            millisecondsValues.append(pickerItem)
+        }
+        secondsPicker.setItems(secondsValues)
+        millisecondsPicker.setItems(millisecondsValues)
     }
     
     override func willActivate() {
         crownSequencer.focus()
     }
     
-    @IBAction func beginPressed() {
-        presentController(withName: "TimerController", context: beepInterval)
+    @IBAction func secondsPickerValueChanged(_ value: Int) {
+        secondsValue = Double(value)
     }
     
-    override func contextsForSegue(withIdentifier segueIdentifier: String) -> [Any]? {
-        return [beepInterval]
+    @IBAction func millisecondsPickerValueChanged(_ value: Int) {
+        millisecondsValue = (Double(value*5) / 100).rounded(toPlaces: 2)
     }
-}
-
-extension MainMenuController: WKCrownDelegate {
-    func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
-        beepInterval += (rotationalDelta * 3).rounded(toPlaces: 2)
-        while beepInterval.remainder(dividingBy: 0.05).rounded(toPlaces: 2) != 0 {
-            if beepInterval > 0 {
-                beepInterval += 0.01
-            } else {
-                beepInterval -= 0.01
-            }
-            beepInterval = beepInterval.rounded(toPlaces: 2)
-        }
-        
-        if beepInterval < 0 {
-            beepInterval = 0.0
-        }
-        
-        let intervalString = String(format: "%.2f s", beepInterval)
-        let fontAttribute = [
-            NSAttributedStringKey.font: UIFont.monospacedDigitSystemFont(ofSize: 33, weight: .regular)
-        ]
-        let attributedIntervalString = NSAttributedString(
-            string: intervalString as String,
-            attributes: fontAttribute
-        )
-        beepIntervalLabel.setAttributedText(attributedIntervalString)
+    
+    @IBAction func beginPressed() {
+        let beepInterval = secondsValue + millisecondsValue
+        presentController(withName: "TimerController", context: beepInterval)
     }
 }
