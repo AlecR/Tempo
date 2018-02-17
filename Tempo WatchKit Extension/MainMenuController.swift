@@ -5,6 +5,7 @@ class MainMenuController: WKInterfaceController {
 
     @IBOutlet var beginButton: WKInterfaceButton!
     
+    @IBOutlet var intervalLabel: WKInterfaceLabel!
     @IBOutlet var secondsPicker: WKInterfacePicker!
     @IBOutlet var millisecondsPicker: WKInterfacePicker!
     
@@ -32,18 +33,43 @@ class MainMenuController: WKInterfaceController {
         }
         secondsPicker.setItems(secondsValues)
         millisecondsPicker.setItems(millisecondsValues)
+        
+        secondsPicker.focus()
     }
     
     override func willActivate() {
         WorkoutManager.shared.endWorkout()
+        updateLabelValue()
     }
     
     @IBAction func secondsPickerValueChanged(_ value: Int) {
         secondsValue = Double(value)
+        updateLabelValue()
     }
     
     @IBAction func millisecondsPickerValueChanged(_ value: Int) {
         millisecondsValue = (Double(value*5) / 100).rounded(toPlaces: 2)
+        updateLabelValue()
+    }
+    
+    func updateLabelValue() {
+        let interval = secondsValue + millisecondsValue
+        var intervalString = ""
+        
+        let timeFormatter = NumberFormatter()
+        timeFormatter.minimumFractionDigits = 2
+        timeFormatter.minimumIntegerDigits = 2
+        
+        if interval > 60.0 {
+            let intervalMinutes: Int = Int(interval / 60)
+            let intervalSeconds = interval.truncatingRemainder(dividingBy: 60).rounded(toPlaces: 2)
+            let intervalSecondsString = timeFormatter.string(from: NSNumber(value: intervalSeconds))
+            intervalString = "Interval: \(intervalMinutes):" + intervalSecondsString!
+        } else {
+            intervalString = "Interval: \(interval) s"
+        }
+        intervalLabel.setText(intervalString)
+        
     }
     
     @IBAction func beginPressed() {

@@ -9,6 +9,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="ArialHB.ttc">
+            <string>ArialHebrew-Bold</string>
+        </array>
         <array key="Helvetica.ttc">
             <string>Helvetica-Bold</string>
         </array>
@@ -23,7 +26,7 @@
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                         </label>
                         <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
-                        <label width="136" height="26" alignment="center" text="Beep Interval" textAlignment="center" id="evM-we-q8p">
+                        <label width="136" height="26" alignment="center" text="Interval: 0.00 s" textAlignment="center" id="evM-we-q8p">
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         </label>
                         <group alignment="center" id="Gy4-vh-6Wl">
@@ -48,6 +51,7 @@
                     </items>
                     <connections>
                         <outlet property="beginButton" destination="UNG-nw-0iK" id="nCD-q8-gvQ"/>
+                        <outlet property="intervalLabel" destination="evM-we-q8p" id="Bfe-Z0-aK1"/>
                         <outlet property="millisecondsPicker" destination="SEy-26-H0q" id="n1h-ty-G2c"/>
                         <outlet property="secondsPicker" destination="OhH-xh-MOI" id="2SM-xX-M14"/>
                     </connections>
@@ -60,28 +64,39 @@
             <objects>
                 <controller identifier="TimerController" id="AgC-eL-Hgc" customClass="TimerController" customModule="Tempo_WatchKit_Extension">
                     <items>
-                        <label width="1" height="25" alignment="center" text="Beep Time: 0.00s" textAlignment="center" id="Qs2-ja-Etb">
-                            <color key="textColor" red="0.73652116300000003" green="0.74381345180000003" blue="0.74381345180000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="font" type="system" pointSize="13"/>
-                        </label>
-                        <label width="136" height="82" alignment="center" text="00:00.00" textAlignment="center" id="C5X-oH-htA">
-                            <fontDescription key="font" type="system" pointSize="33"/>
-                        </label>
-                        <button width="1" alignment="center" verticalAlignment="bottom" hidden="YES" title="STOP" id="zaV-wW-f2F">
+                        <group width="1" height="0.80000000000000004" alignment="center" backgroundImage="tempo-watch-progress-0" contentMode="scaleAspectFit" layout="vertical" spacing="0.0" id="ZyD-we-AlP">
+                            <items>
+                                <label width="1" alignment="center" verticalAlignment="center" text="0:00.00" textAlignment="center" id="C5X-oH-htA">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="27"/>
+                                    </variation>
+                                    <variation key="device=watch42mm">
+                                        <fontDescription key="font" type="system" pointSize="33"/>
+                                    </variation>
+                                </label>
+                                <label width="1" alignment="center" verticalAlignment="center" text="Interval" textAlignment="center" id="gOz-pG-gYR" userLabel="Interval:">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="9"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="0.0"/>
+                        </group>
+                        <button width="1" height="0.20000000000000001" alignment="center" verticalAlignment="bottom" hidden="YES" title="STOP" id="zaV-wW-f2F">
                             <color key="backgroundColor" red="0.96844327450000001" green="0.13130376869999999" blue="0.11214169760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="stopPressed" destination="AgC-eL-Hgc" id="QK4-ly-BIl"/>
                             </connections>
                         </button>
-                        <group width="1" alignment="left" verticalAlignment="bottom" id="9KU-QD-XHF">
+                        <group width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" id="9KU-QD-XHF">
                             <items>
-                                <button width="0.5" alignment="left" verticalAlignment="bottom" title="START" id="LY4-Lz-k3g">
+                                <button width="0.5" height="1" alignment="left" verticalAlignment="bottom" title="START" id="LY4-Lz-k3g">
                                     <color key="backgroundColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="startPressed" destination="AgC-eL-Hgc" id="fh6-fC-jWA"/>
                                     </connections>
                                 </button>
-                                <button width="0.5" alignment="right" title="RESET" id="mYE-nX-TPN">
+                                <button width="0.5" height="1" alignment="right" verticalAlignment="bottom" title="RESET" id="mYE-nX-TPN">
                                     <connections>
                                         <action selector="resetButtonPressed" destination="AgC-eL-Hgc" id="JE9-E8-sBh"/>
                                     </connections>
@@ -90,16 +105,17 @@
                         </group>
                     </items>
                     <connections>
-                        <outlet property="beepTimeLabel" destination="Qs2-ja-Etb" id="KcT-wa-IvG"/>
+                        <outlet property="intervalLabel" destination="gOz-pG-gYR" id="t9k-7l-Qdh"/>
                         <outlet property="resetButton" destination="mYE-nX-TPN" id="CAu-7N-OPD"/>
                         <outlet property="startButton" destination="LY4-Lz-k3g" id="0Q2-XX-z2u"/>
                         <outlet property="startButtonGroup" destination="9KU-QD-XHF" id="rqa-jw-hkc"/>
                         <outlet property="stopButton" destination="zaV-wW-f2F" id="CBB-HW-2Gn"/>
                         <outlet property="timeLabel" destination="C5X-oH-htA" id="JzC-BN-hEq"/>
+                        <outlet property="timerLoopGroup" destination="ZyD-we-AlP" id="d3l-GN-MxM"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="346"/>
+            <point key="canvasLocation" x="220" y="327"/>
         </scene>
     </scenes>
 </document>

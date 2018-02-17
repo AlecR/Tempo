@@ -1,0 +1,6 @@
+framework module Pods_Tempo_WatchKit_App {
+  umbrella header "Pods-Tempo WatchKit App-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,13 +14,13 @@ class AudioManager {
         do {
             try audioSession.setCategory(AVAudioSessionCategoryAmbient, with: .duckOthers)
         } catch {
-            print("*** Audiosession not set ***")
+            print("🔊 Audio Session couldn't be created")
         }
         
         do {
             try audioSession.setActive(true)
         } catch {
-            print("Audiosession cannot be activated")
+            print("🔊 Audio Session couldn't be activated")
         }
     }
     
