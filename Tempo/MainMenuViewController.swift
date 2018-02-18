@@ -1,14 +1,6 @@
-//
-//  ViewController.swift
-//  Tempo
-//
-//  Created by Alec Rodgers on 2/12/18.
-//  Copyright © 2018 Alec Rodgers. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+class MainMenuViewController: UIViewController {
 
     @IBOutlet weak var timePicker: UIPickerView!
     
@@ -23,12 +15,12 @@ class ViewController: UIViewController {
             let value = Double(ms) / 100
             millisecondsValues.append(value)
         }
-        
+
         timePicker.delegate = self
         timePicker.dataSource = self
     }
     
-    func addLabelsToPicker() {
+    private func addLabelsToPicker() {
         let minsLabel = UILabel()
         minsLabel.text = "mins"
         
@@ -39,19 +31,33 @@ class ViewController: UIViewController {
         msLabel.text = "ms"
         
         timePicker.setPickerLabels(labels: [0: minsLabel, 1: secLabel, 2: msLabel], containedView: view)
-        
     }
 
     override func viewDidLayoutSubviews() {
         addLabelsToPicker()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        addLabelsToPicker()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTimerViewController" {
+            if let destination = segue.destination as? TimerViewController {
+                
+                let mins = Double(timePicker.selectedRow(inComponent: 0))
+                let seconds = Double(timePicker.selectedRow(inComponent: 1))
+                let milliseconds = Double(timePicker.selectedRow(inComponent: 2))
+                
+                let totalSeconds: Double = (mins * 60) + seconds + (milliseconds * 0.05)
+                
+                destination.interval = totalSeconds
+            }
+        }
     }
+    
 }
+// =====================================
+// UIPickerView Delegate / Data Source
+// =====================================
 
-extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension MainMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }

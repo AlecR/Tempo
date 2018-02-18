@@ -61,6 +61,7 @@ class TimerController: WKInterfaceController {
         counter = 0
         timeLabel.setText("0:00.00")
         timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-0")
+        timer.invalidate()
     }
     
     @objc func updateCounter() {
@@ -74,7 +75,7 @@ class TimerController: WKInterfaceController {
         let percentComplete = Int(((abs(intervalTimeRemaining) / interval)) * 100)
         timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-\(percentComplete)")
         
-        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
+        let timeSting = WatchUtilHelper.attributedStringFromTimeInterval(interval: counter)
         timeLabel.setAttributedText(timeSting)
         
     }

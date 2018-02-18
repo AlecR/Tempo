@@ -12,10 +12,12 @@
 		D36C8D040E64DF53AA00FCD3 /* Pods_Tempo_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDF85D834655F289FB34490 /* Pods_Tempo_WatchKit_Extension.framework */; };
 		E308B43F2034713100FB1EE5 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E36B1A9120333FCA00F21269 /* beep.wav */; };
 		E308B4412034761500FB1EE5 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B4402034761500FB1EE5 /* WorkoutManager.swift */; };
-		E308B443203485B200FB1EE5 /* UtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B442203485B200FB1EE5 /* UtilHelper.swift */; };
+		E308B443203485B200FB1EE5 /* WatchUtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B442203485B200FB1EE5 /* WatchUtilHelper.swift */; };
 		E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313CBB0203733F10018D727 /* UIPickerView+Label.swift */; };
+		E33D08192038C7F6005C3A88 /* WKInterfaceDevice+WatchResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */; };
+		E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D081A2038C857005C3A88 /* UtilHelper.swift */; };
 		E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893D20321ABF004547E2 /* AppDelegate.swift */; };
-		E342894020321ABF004547E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893F20321ABF004547E2 /* ViewController.swift */; };
+		E342894020321ABF004547E2 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893F20321ABF004547E2 /* MainMenuViewController.swift */; };
 		E342894320321ABF004547E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E342894120321ABF004547E2 /* Main.storyboard */; };
 		E342894520321ABF004547E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E342894420321ABF004547E2 /* Assets.xcassets */; };
 		E342894820321ABF004547E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E342894620321ABF004547E2 /* LaunchScreen.storyboard */; };
@@ -27,7 +29,7 @@
 		E342896320321ABF004547E2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342896220321ABF004547E2 /* ExtensionDelegate.swift */; };
 		E342896720321ABF004547E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E342896620321ABF004547E2 /* Assets.xcassets */; };
 		E342897820322F2E004547E2 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342897720322F2E004547E2 /* MainMenuController.swift */; };
-		E35392DB2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */; };
+		E35392DF20388F05000BCAF6 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DE20388F05000BCAF6 /* TimerViewController.swift */; };
 		E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B1A8F20333C4D00F21269 /* AudioManager.swift */; };
 		E36B1A9220333FCA00F21269 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E36B1A9120333FCA00F21269 /* beep.wav */; };
 		E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E537D22032A12C00A3D8A7 /* Double+Round.swift */; };
@@ -86,11 +88,12 @@
 		BCB79FEF48FDA4CBFD8BE50D /* Pods-Tempo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tempo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tempo/Pods-Tempo.debug.xcconfig"; sourceTree = "<group>"; };
 		DB84535AA2B52512D85A87FD /* Pods-Tempo WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tempo WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tempo WatchKit Extension/Pods-Tempo WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		E308B4402034761500FB1EE5 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
-		E308B442203485B200FB1EE5 /* UtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilHelper.swift; sourceTree = "<group>"; };
+		E308B442203485B200FB1EE5 /* WatchUtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUtilHelper.swift; sourceTree = "<group>"; };
 		E313CBB0203733F10018D727 /* UIPickerView+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Label.swift"; sourceTree = "<group>"; };
+		E33D081A2038C857005C3A88 /* UtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilHelper.swift; sourceTree = "<group>"; };
 		E342893A20321ABF004547E2 /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342893D20321ABF004547E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E342893F20321ABF004547E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E342893F20321ABF004547E2 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		E342894220321ABF004547E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E342894420321ABF004547E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E342894720321ABF004547E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		E342896920321ABF004547E2 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		E342897720322F2E004547E2 /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKInterfaceDevice+WatchResolution.swift"; sourceTree = "<group>"; };
+		E35392DE20388F05000BCAF6 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E36B1A8F20333C4D00F21269 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E36B1A9120333FCA00F21269 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		E3E537D22032A12C00A3D8A7 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
@@ -162,6 +166,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E33D08182038C7B4005C3A88 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E33D081A2038C857005C3A88 /* UtilHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E342893120321ABF004547E2 = {
 			isa = PBXGroup;
 			children = (
@@ -187,12 +199,14 @@
 		E342893C20321ABF004547E2 /* Tempo */ = {
 			isa = PBXGroup;
 			children = (
+				E33D08182038C7B4005C3A88 /* Helpers */,
 				E313CBAF203733DD0018D727 /* Extensions */,
 				E342893D20321ABF004547E2 /* AppDelegate.swift */,
-				E342893F20321ABF004547E2 /* ViewController.swift */,
+				E342893F20321ABF004547E2 /* MainMenuViewController.swift */,
+				E35392DE20388F05000BCAF6 /* TimerViewController.swift */,
 				E342894120321ABF004547E2 /* Main.storyboard */,
-				E342894420321ABF004547E2 /* Assets.xcassets */,
 				E342894620321ABF004547E2 /* LaunchScreen.storyboard */,
+				E342894420321ABF004547E2 /* Assets.xcassets */,
 				E342894920321ABF004547E2 /* Info.plist */,
 			);
 			path = Tempo;
@@ -227,9 +241,9 @@
 		E36B1A8E20333C3000F21269 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E308B442203485B200FB1EE5 /* WatchUtilHelper.swift */,
 				E36B1A8F20333C4D00F21269 /* AudioManager.swift */,
 				E308B4402034761500FB1EE5 /* WorkoutManager.swift */,
-				E308B442203485B200FB1EE5 /* UtilHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -544,10 +558,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E342894020321ABF004547E2 /* ViewController.swift in Sources */,
+				E35392DF20388F05000BCAF6 /* TimerViewController.swift in Sources */,
+				E342894020321ABF004547E2 /* MainMenuViewController.swift in Sources */,
 				E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */,
 				E3E537D32032A12C00A3D8A7 /* Double+Round.swift in Sources */,
 				E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */,
+				E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,9 +572,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */,
-				E308B443203485B200FB1EE5 /* UtilHelper.swift in Sources */,
+				E308B443203485B200FB1EE5 /* WatchUtilHelper.swift in Sources */,
 				E308B4412034761500FB1EE5 /* WorkoutManager.swift in Sources */,
-				E35392DB2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift in Sources */,
+				E33D08192038C7F6005C3A88 /* WKInterfaceDevice+WatchResolution.swift in Sources */,
 				E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */,
 				E342897820322F2E004547E2 /* MainMenuController.swift in Sources */,
 				E342896320321ABF004547E2 /* ExtensionDelegate.swift in Sources */,
