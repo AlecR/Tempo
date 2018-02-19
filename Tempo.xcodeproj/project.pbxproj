@@ -34,6 +34,7 @@
 		E36B1A9220333FCA00F21269 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E36B1A9120333FCA00F21269 /* beep.wav */; };
 		E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E537D22032A12C00A3D8A7 /* Double+Round.swift */; };
 		E3E537D32032A12C00A3D8A7 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E537D22032A12C00A3D8A7 /* Double+Round.swift */; };
+		E3E6362F203A474100CA0513 /* LapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E6362E203A474100CA0513 /* LapCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		E36B1A8F20333C4D00F21269 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E36B1A9120333FCA00F21269 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		E3E537D22032A12C00A3D8A7 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
+		E3E6362E203A474100CA0513 /* LapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapCell.swift; sourceTree = "<group>"; };
 		FC310D69B67264E4D8E485EA /* Pods-Tempo WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tempo WatchKit App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tempo WatchKit App/Pods-Tempo WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 		E342893C20321ABF004547E2 /* Tempo */ = {
 			isa = PBXGroup;
 			children = (
+				E3E6362D203A472100CA0513 /* View */,
 				E33D08182038C7B4005C3A88 /* Helpers */,
 				E313CBAF203733DD0018D727 /* Extensions */,
 				E342893D20321ABF004547E2 /* AppDelegate.swift */,
@@ -255,6 +258,14 @@
 				E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E3E6362D203A472100CA0513 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3E6362E203A474100CA0513 /* LapCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E96D9A18B072C4851E27AE1C /* Frameworks */ = {
@@ -563,6 +574,7 @@
 				E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */,
 				E3E537D32032A12C00A3D8A7 /* Double+Round.swift in Sources */,
 				E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */,
+				E3E6362F203A474100CA0513 /* LapCell.swift in Sources */,
 				E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
