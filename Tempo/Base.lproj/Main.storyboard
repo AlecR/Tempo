@@ -222,7 +222,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LAPS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnI-DU-OO9">
-                                        <rect key="frame" x="16" y="244" width="288" height="40"/>
+                                        <rect key="frame" x="16" y="284" width="288" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="KwS-cu-NEp"/>
@@ -232,8 +232,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KXV-oK-FH9">
-                                        <rect key="frame" x="16" y="284" width="288" height="268"/>
+                                        <rect key="frame" x="16" y="324" width="288" height="236"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="236" id="OHT-qD-VRc"/>
+                                        </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="lapCell" id="iCJ-qX-Rtv" customClass="LapCell" customModule="Tempo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="288" height="44"/>
@@ -274,11 +277,11 @@
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="KXV-oK-FH9" firstAttribute="top" secondItem="mbR-VV-k4s" secondAttribute="centerY" id="2bG-y3-fh2"/>
+                                    <constraint firstItem="KXV-oK-FH9" firstAttribute="top" secondItem="ZnI-DU-OO9" secondAttribute="bottom" id="7fK-10-EYB"/>
                                     <constraint firstAttribute="trailing" secondItem="TX0-pg-j7L" secondAttribute="trailing" id="Ab6-4i-yod"/>
+                                    <constraint firstItem="ZnI-DU-OO9" firstAttribute="top" secondItem="mbR-VV-k4s" secondAttribute="centerY" id="CDF-gB-jUi"/>
                                     <constraint firstAttribute="bottom" secondItem="TX0-pg-j7L" secondAttribute="bottom" id="HR8-es-8Nv"/>
                                     <constraint firstAttribute="trailing" secondItem="KXV-oK-FH9" secondAttribute="trailing" constant="16" id="Ore-qE-n4L"/>
-                                    <constraint firstAttribute="bottom" secondItem="KXV-oK-FH9" secondAttribute="bottom" constant="16" id="UE8-DK-uJr"/>
                                     <constraint firstAttribute="trailing" secondItem="ZnI-DU-OO9" secondAttribute="trailing" constant="16" id="gVb-Wb-zbs"/>
                                     <constraint firstItem="ZnI-DU-OO9" firstAttribute="leading" secondItem="mbR-VV-k4s" secondAttribute="leading" constant="16" id="jDK-ES-DDL"/>
                                     <constraint firstItem="TX0-pg-j7L" firstAttribute="leading" secondItem="mbR-VV-k4s" secondAttribute="leading" id="m4R-dr-XXK"/>
@@ -320,6 +323,7 @@
                         <outlet property="lapButton" destination="s4n-sa-ObE" id="0aS-2k-V7i"/>
                         <outlet property="lapLabel" destination="R4Q-t8-tgW" id="Tbf-nm-afJ"/>
                         <outlet property="lapTable" destination="KXV-oK-FH9" id="kF2-mI-iKY"/>
+                        <outlet property="lapTableHeight" destination="OHT-qD-VRc" id="lN1-Nm-2l1"/>
                         <outlet property="lapView" destination="mbR-VV-k4s" id="nBB-Qd-PBY"/>
                         <outlet property="lapsTapDetectView" destination="TX0-pg-j7L" id="0Hb-yo-fig"/>
                         <outlet property="progressImage" destination="J8y-6v-EhJ" id="MRy-ma-hQj"/>

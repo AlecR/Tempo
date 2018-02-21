@@ -19,6 +19,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var lapView: UIView!
     @IBOutlet weak var lapsTapDetectView: UIView!
     @IBOutlet weak var lapTable: UITableView!
+    @IBOutlet weak var lapTableHeight: NSLayoutConstraint!
     @IBOutlet weak var blurView: UIView!
     
     private var timer: Timer!
@@ -52,7 +53,6 @@ class TimerViewController: UIViewController {
         lapButton.layer.cornerRadius = lapButton.frame.width / 2
         
         
-        
         lapView.frame = CGRect(
             x: 0,
             y: view.frame.height,
@@ -78,8 +78,9 @@ class TimerViewController: UIViewController {
     
     @IBAction func lapsButtonPressed(_ sender: Any) {
         lapView.isHidden = false
+        self.view.layoutIfNeeded()
         UIView.animate(
-            withDuration: 1,
+            withDuration: 0.5,
             delay: 0, 
             options: UIViewAnimationOptions.allowUserInteraction,
             animations: {
@@ -120,6 +121,7 @@ class TimerViewController: UIViewController {
         counter = 0
         timeLabel.text = "0:00.00"
         progressImage.image = UIImage(named: "tempo-phone-progress-0")
+        laps.removeAll()
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -134,6 +136,7 @@ class TimerViewController: UIViewController {
         lapLabel.text = "Lap \(laps.count): \(UtilHelper.secondsToFormattedTime(seconds: lapCounter))"
         lapCounter = 0.0
         lapTable.reloadData()
+        updateViewConstraints()
     }
     
     @objc func updateCounter() {
@@ -148,6 +151,11 @@ class TimerViewController: UIViewController {
         progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
         let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
         timeLabel.attributedText = timeSting
+    }
+    
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        lapTableHeight.constant = lapTable.contentSize.height
     }
 }
 
@@ -169,5 +177,4 @@ extension TimerViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
 }
