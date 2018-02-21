@@ -17,6 +17,8 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var stopStackView: UIStackView!
     
     @IBOutlet weak var lapView: UIView!
+    @IBOutlet weak var lapViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var lapViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var lapsTapDetectView: UIView!
     @IBOutlet weak var lapTable: UITableView!
     @IBOutlet weak var lapTableHeight: NSLayoutConstraint!
@@ -38,6 +40,9 @@ class TimerViewController: UIViewController {
         lapTable.delegate = self
         lapTable.dataSource = self
         lapTable.tableFooterView = UIView()
+        
+        lapViewTopConstraint.constant = view.frame.height
+        lapViewHeight.constant = view.frame.height
 
         if interval < 60 {
             intervalLabel.text = "Interval: \(interval) s"
@@ -50,23 +55,7 @@ class TimerViewController: UIViewController {
         startButton.layer.cornerRadius = startButton.frame.width / 2
         resetButton.layer.cornerRadius = resetButton.frame.width / 2
         stopButton.layer.cornerRadius = stopButton.frame.width / 2
-        lapButton.layer.cornerRadius = lapButton.frame.width / 2
-        
-        
-        lapView.frame = CGRect(
-            x: 0,
-            y: view.frame.height,
-            width: view.frame.width,
-            height: view.frame.height
-        )
-        
-        lapTable.frame = CGRect(
-            x: 0,
-            y: lapView.frame.height * (1/3),
-            width: lapView.frame.width,
-            height: lapView.frame.height
-        )
-        
+        lapButton.layer.cornerRadius = lapButton.frame.width / 2   
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -78,13 +67,15 @@ class TimerViewController: UIViewController {
     
     @IBAction func lapsButtonPressed(_ sender: Any) {
         lapView.isHidden = false
-        self.view.layoutIfNeeded()
+        self.lapViewTopConstraint.constant = 0
+        self.lapTableHeight.constant = lapTable.contentSize.height
         UIView.animate(
             withDuration: 0.5,
             delay: 0, 
             options: UIViewAnimationOptions.allowUserInteraction,
             animations: {
-                self.lapView.frame.origin.y = 0
+                self.lapView.layoutIfNeeded()
+                self.view.layoutIfNeeded()
                 self.blurView.alpha = 0.75
         }) { _ in
             let gestureRecognizer = UITapGestureRecognizer(
@@ -98,8 +89,9 @@ class TimerViewController: UIViewController {
     }
     
     @objc func didTapOutsideLapView() {
+        self.lapViewTopConstraint.constant = self.view.frame.height
         UIView.animate(withDuration: 1.0) {
-            self.lapView.frame.origin.y = self.view.frame.height
+            self.view.layoutIfNeeded()
             self.blurView.alpha = 0.0
         }
     }
@@ -136,7 +128,6 @@ class TimerViewController: UIViewController {
         lapLabel.text = "Lap \(laps.count): \(UtilHelper.secondsToFormattedTime(seconds: lapCounter))"
         lapCounter = 0.0
         lapTable.reloadData()
-        updateViewConstraints()
     }
     
     @objc func updateCounter() {
@@ -151,11 +142,6 @@ class TimerViewController: UIViewController {
         progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
         let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
         timeLabel.attributedText = timeSting
-    }
-    
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        lapTableHeight.constant = lapTable.contentSize.height
     }
 }
 

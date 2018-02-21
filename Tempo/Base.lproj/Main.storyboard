@@ -245,26 +245,29 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lap 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbs-VN-V2P">
-                                                            <rect key="frame" x="15" y="11" width="50" height="22"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:25.02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O13-Ss-pTd">
-                                                            <rect key="frame" x="202" y="11" width="71" height="22"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lK2-An-nFQ">
+                                                            <rect key="frame" x="8" y="8" width="272" height="27.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lap 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbs-VN-V2P">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="136" height="27.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:25.02" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O13-Ss-pTd">
+                                                                    <rect key="frame" x="136" y="0.0" width="136" height="27.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="O13-Ss-pTd" secondAttribute="bottom" id="Bhn-A3-YCm"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="sbs-VN-V2P" secondAttribute="bottom" id="WTB-UT-5Bg"/>
-                                                        <constraint firstItem="O13-Ss-pTd" firstAttribute="top" secondItem="jK5-up-gSK" secondAttribute="topMargin" id="WVK-bg-Kuo"/>
-                                                        <constraint firstItem="O13-Ss-pTd" firstAttribute="trailing" secondItem="jK5-up-gSK" secondAttribute="trailingMargin" id="oEP-LK-Fs0"/>
-                                                        <constraint firstItem="sbs-VN-V2P" firstAttribute="top" secondItem="jK5-up-gSK" secondAttribute="topMargin" id="wyx-NF-v6i"/>
-                                                        <constraint firstItem="sbs-VN-V2P" firstAttribute="leading" secondItem="jK5-up-gSK" secondAttribute="leadingMargin" id="xIU-bB-pS3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lK2-An-nFQ" secondAttribute="trailing" constant="8" id="0FR-VU-JaH"/>
+                                                        <constraint firstItem="lK2-An-nFQ" firstAttribute="leading" secondItem="jK5-up-gSK" secondAttribute="leading" constant="8" id="168-eN-qCx"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lK2-An-nFQ" secondAttribute="bottom" constant="8" id="QvD-te-Dt0"/>
+                                                        <constraint firstItem="lK2-An-nFQ" firstAttribute="top" secondItem="jK5-up-gSK" secondAttribute="top" constant="8" id="Woy-vj-uSR"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -277,12 +280,13 @@
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="KXV-oK-FH9" firstAttribute="top" secondItem="ZnI-DU-OO9" secondAttribute="bottom" id="7fK-10-EYB"/>
                                     <constraint firstAttribute="trailing" secondItem="TX0-pg-j7L" secondAttribute="trailing" id="Ab6-4i-yod"/>
                                     <constraint firstItem="ZnI-DU-OO9" firstAttribute="top" secondItem="mbR-VV-k4s" secondAttribute="centerY" id="CDF-gB-jUi"/>
-                                    <constraint firstAttribute="bottom" secondItem="TX0-pg-j7L" secondAttribute="bottom" id="HR8-es-8Nv"/>
                                     <constraint firstAttribute="trailing" secondItem="KXV-oK-FH9" secondAttribute="trailing" constant="16" id="Ore-qE-n4L"/>
+                                    <constraint firstAttribute="bottom" secondItem="TX0-pg-j7L" secondAttribute="bottom" id="bYc-5z-5ye"/>
+                                    <constraint firstAttribute="height" constant="568" id="eUx-T7-Xvf"/>
                                     <constraint firstAttribute="trailing" secondItem="ZnI-DU-OO9" secondAttribute="trailing" constant="16" id="gVb-Wb-zbs"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KXV-oK-FH9" secondAttribute="bottom" constant="8" id="hzl-DS-pgE"/>
                                     <constraint firstItem="ZnI-DU-OO9" firstAttribute="leading" secondItem="mbR-VV-k4s" secondAttribute="leading" constant="16" id="jDK-ES-DDL"/>
                                     <constraint firstItem="TX0-pg-j7L" firstAttribute="leading" secondItem="mbR-VV-k4s" secondAttribute="leading" id="m4R-dr-XXK"/>
                                     <constraint firstItem="TX0-pg-j7L" firstAttribute="top" secondItem="mbR-VV-k4s" secondAttribute="top" id="mL8-co-Dpk"/>
@@ -310,7 +314,6 @@
                             <constraint firstItem="aAO-gh-u7R" firstAttribute="leading" secondItem="sDw-1u-7b7" secondAttribute="leading" constant="8" id="aiD-Uj-6uL"/>
                             <constraint firstItem="Wqg-vf-fPq" firstAttribute="leading" secondItem="sDw-1u-7b7" secondAttribute="leading" constant="24" id="iXb-tX-uQS"/>
                             <constraint firstItem="Rba-WW-gDe" firstAttribute="top" secondItem="sDw-1u-7b7" secondAttribute="top" id="kLI-wo-VyG"/>
-                            <constraint firstItem="mbR-VV-k4s" firstAttribute="bottom" secondItem="sDw-1u-7b7" secondAttribute="bottom" id="lCY-Ru-O5X"/>
                             <constraint firstItem="y6p-Gd-PiO" firstAttribute="top" secondItem="y6W-is-mSP" secondAttribute="top" id="s2m-QW-I4M"/>
                             <constraint firstItem="y6p-Gd-PiO" firstAttribute="trailing" secondItem="sDw-1u-7b7" secondAttribute="trailing" id="sOb-5I-CcX"/>
                             <constraint firstItem="Che-W5-4lo" firstAttribute="top" secondItem="sDw-1u-7b7" secondAttribute="top" id="tvB-Py-L1h"/>
@@ -325,6 +328,8 @@
                         <outlet property="lapTable" destination="KXV-oK-FH9" id="kF2-mI-iKY"/>
                         <outlet property="lapTableHeight" destination="OHT-qD-VRc" id="lN1-Nm-2l1"/>
                         <outlet property="lapView" destination="mbR-VV-k4s" id="nBB-Qd-PBY"/>
+                        <outlet property="lapViewHeight" destination="eUx-T7-Xvf" id="CdE-o6-1j4"/>
+                        <outlet property="lapViewTopConstraint" destination="08F-Ko-udx" id="l2H-Fx-QJr"/>
                         <outlet property="lapsTapDetectView" destination="TX0-pg-j7L" id="0Hb-yo-fig"/>
                         <outlet property="progressImage" destination="J8y-6v-EhJ" id="MRy-ma-hQj"/>
                         <outlet property="resetButton" destination="yUF-KO-tbV" id="pLt-au-xXS"/>
