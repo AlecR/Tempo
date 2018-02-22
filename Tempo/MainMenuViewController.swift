@@ -22,12 +22,15 @@ class MainMenuViewController: UIViewController {
     
     private func addLabelsToPicker() {
         let minsLabel = UILabel()
+        minsLabel.textColor = .white
         minsLabel.text = "mins"
         
         let secLabel = UILabel()
+        secLabel.textColor = .white
         secLabel.text = "sec"
         
         let msLabel = UILabel()
+        msLabel.textColor = .white
         msLabel.text = "ms"
         
         timePicker.setPickerLabels(labels: [0: minsLabel, 1: secLabel, 2: msLabel], containedView: view)
@@ -88,6 +91,7 @@ extension MainMenuViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let pickerLabel = UILabel()
         pickerLabel.textAlignment = .right
         pickerLabel.font = UIFont.systemFont(ofSize: 24)
+        pickerLabel.textColor = .white
         let labelWidth = componentWidth / 2
         let pickerLabelX = pickerView.frame.origin.x * CGFloat(component) - 8
         let pickerLabelY = (pickerView.frame.size.height / 2) - (pickerLabel.font.pointSize / 2)

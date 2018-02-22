@@ -29,6 +29,7 @@ class TimerViewController: UIViewController {
     private var lapCounter = 0.0
     var interval = 0.0
     var laps = [Double]()
+    var beepedForInterval = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class TimerViewController: UIViewController {
         startButton.layer.cornerRadius = startButton.frame.width / 2
         resetButton.layer.cornerRadius = resetButton.frame.width / 2
         stopButton.layer.cornerRadius = stopButton.frame.width / 2
-        lapButton.layer.cornerRadius = lapButton.frame.width / 2   
+        lapButton.layer.cornerRadius = lapButton.frame.width / 2
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -133,12 +134,21 @@ class TimerViewController: UIViewController {
     @objc func updateCounter() {
         counter += 0.01
         lapCounter += 0.01
-        let intervalTimeRemaining = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
-        if intervalTimeRemaining == 0 {
+        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        
+        // Counter is imprecise, so `beepedForInterval` is used to make sure
+        // only one beep / vibrate is occuring per interval
+        if intervalTimeRemaining < 0.05 && !beepedForInterval {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            // TODO: Play sound
+            AudioManager.shared.playBeep()
+            print("beep")
+            beepedForInterval = true
+        } else if intervalTimeRemaining > 0.95 {
+            beepedForInterval = false
         }
-        let percentComplete = Int(((abs(intervalTimeRemaining) / interval)) * 100)
+        
+        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
         progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
         let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
         timeLabel.attributedText = timeSting
