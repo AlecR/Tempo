@@ -7,6 +7,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
+    @IBOutlet weak var lapsTableButton: UIButton!
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var intervalLabel: UILabel!
@@ -16,12 +17,12 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var startStackView: UIStackView!
     @IBOutlet weak var stopStackView: UIStackView!
     
-    @IBOutlet weak var lapView: UIView!
-    @IBOutlet weak var lapViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var lapViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lapsView: UIView!
+    @IBOutlet weak var lapsViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var lapsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var lapsTapDetectView: UIView!
-    @IBOutlet weak var lapTable: UITableView!
-    @IBOutlet weak var lapTableHeight: NSLayoutConstraint!
+    @IBOutlet weak var lapsTable: UITableView!
+    @IBOutlet weak var lapsTableHeight: NSLayoutConstraint!
     @IBOutlet weak var blurView: UIView!
     
     private var timer: Timer!
@@ -38,18 +39,18 @@ class TimerViewController: UIViewController {
         lapLabel.isHidden = true
         progressImage.image = UIImage(named: "tempo-phone-progress-0")
         
-        lapTable.delegate = self
-        lapTable.dataSource = self
-        lapTable.tableFooterView = UIView()
+        lapsTable.delegate = self
+        lapsTable.dataSource = self
         
-        lapViewTopConstraint.constant = view.frame.height
-        lapViewHeight.constant = view.frame.height
-
-        if interval < 60 {
-            intervalLabel.text = "Interval: \(interval) s"
-        } else {
-            intervalLabel.text = "Interval: \(UtilHelper.secondsToFormattedTime(seconds: interval) as String)"
-        }
+        lapsTableButton.isEnabled = false
+        lapsTableButton.setTitleColor(.lightGray, for: .disabled)
+        lapsTableButton.setTitleColor(.white, for: .normal)
+        
+        lapsViewTopConstraint.constant = view.frame.height
+        lapsViewHeight.constant = view.frame.height
+        
+        configureTimerLabels()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,7 +58,113 @@ class TimerViewController: UIViewController {
         resetButton.layer.cornerRadius = resetButton.frame.width / 2
         stopButton.layer.cornerRadius = stopButton.frame.width / 2
         lapButton.layer.cornerRadius = lapButton.frame.width / 2
+        
+        configureLapTable()
+        
     }
+    
+    private func configureTimerLabels() {
+        
+        let intervalString = "Interval: " as NSString
+        let attributedIntervalString = NSMutableAttributedString(
+            string: intervalString as String,
+            attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 20.0)]
+        )
+        
+        let boldFontAttribute = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20.0)]
+        attributedIntervalString.addAttributes(
+            boldFontAttribute,
+            range: intervalString.range(of: "Interval:")
+        )
+        
+    
+        if interval == 0 {
+            intervalLabel.isHidden = true
+        } else if interval < 60 {
+            let interval = NSAttributedString(string: "\(self.interval) s")
+            attributedIntervalString.append(interval)
+            intervalLabel.attributedText = attributedIntervalString
+        } else {
+            let interval = NSAttributedString(string: "\(UtilHelper.secondsToFormattedTime(seconds: self.interval) as String)")
+            attributedIntervalString.append(interval)
+            intervalLabel.attributedText = attributedIntervalString
+        }
+    }
+    
+    /*
+     Configures and adds a header to the lap table
+     TODO: Create a `LapTable` class for the lap table's configuration
+     */
+    private func configureLapTable() {
+        let tableHeaderView = UIView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: lapsTable.frame.width,
+            height: 60
+        ))
+        
+        let tableHeaderLabel = UILabel(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: lapsTable.frame.width,
+            height: tableHeaderView.frame.height
+        ))
+        
+        let tableFooterView = UIView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: lapsTable.frame.width,
+            height: 10
+        ))
+        
+        tableHeaderLabel.text = "LAPS"
+        tableHeaderLabel.textAlignment = .center
+        tableHeaderLabel.font = UIFont.systemFont(ofSize: 30)
+        tableHeaderLabel.textColor = .white
+        
+        tableHeaderView.addSubview(tableHeaderLabel)
+        
+        lapsTable.tableFooterView = tableFooterView
+        lapsTable.tableHeaderView = tableHeaderView
+        
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        lapsTable.backgroundView = blurEffectView
+        
+    }
+    
+    /*
+     Handles updates for each tick of the timer
+     */
+    @objc func updateCounter() {
+        counter += 0.01
+        lapCounter += 0.01
+        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        
+        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
+        timeLabel.attributedText = timeSting
+        
+        guard interval > 0 else { return }
+        
+        // Counter is imprecise, so `beepedForInterval` is used to make sure
+        // only one beep / vibrate is occuring per interval
+        if intervalTimeRemaining < 0.05 && !beepedForInterval {
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            AudioManager.shared.playBeep()
+            beepedForInterval = true
+        } else if intervalTimeRemaining > 0.95 {
+            beepedForInterval = false
+        }
+        
+        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
+        progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
+        
+    }
+    
+    // =====================================
+    // IBActions
+    // =====================================
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
         if let timer = timer {
@@ -66,16 +173,16 @@ class TimerViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func lapsButtonPressed(_ sender: Any) {
-        lapView.isHidden = false
-        self.lapViewTopConstraint.constant = 0
-        self.lapTableHeight.constant = lapTable.contentSize.height
+    @IBAction func lapsTableButtonPressed(_ sender: Any) {
+        lapsView.isHidden = false
+        self.lapsViewTopConstraint.constant = 0
+        self.lapsTableHeight.constant = lapsTable.contentSize.height
         UIView.animate(
             withDuration: 0.5,
             delay: 0, 
             options: UIViewAnimationOptions.allowUserInteraction,
             animations: {
-                self.lapView.layoutIfNeeded()
+                self.lapsView.layoutIfNeeded()
                 self.view.layoutIfNeeded()
                 self.blurView.alpha = 0.75
         }) { _ in
@@ -90,7 +197,7 @@ class TimerViewController: UIViewController {
     }
     
     @objc func didTapOutsideLapView() {
-        self.lapViewTopConstraint.constant = self.view.frame.height
+        self.lapsViewTopConstraint.constant = self.view.frame.height
         UIView.animate(withDuration: 1.0) {
             self.view.layoutIfNeeded()
             self.blurView.alpha = 0.0
@@ -115,6 +222,7 @@ class TimerViewController: UIViewController {
         timeLabel.text = "0:00.00"
         progressImage.image = UIImage(named: "tempo-phone-progress-0")
         laps.removeAll()
+        lapsTableButton.isEnabled = false
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -125,33 +233,19 @@ class TimerViewController: UIViewController {
     
     @IBAction func lapButtonPressed(_ sender: Any) {
         lapLabel.isHidden = false
+        lapsTableButton.isEnabled = true
+        lapsTableButton.tintColor = .white
         laps.append(lapCounter)
-        lapLabel.text = "Lap \(laps.count): \(UtilHelper.secondsToFormattedTime(seconds: lapCounter))"
+        
+        let lapString = "Lap \(laps.count): \(UtilHelper.secondsToFormattedTime(seconds: lapCounter))" as NSString
+        let lapAttributedString = NSMutableAttributedString(string: lapString as String)
+        
+        let boldFontAttribute = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20.0)]
+        lapAttributedString.addAttributes(boldFontAttribute, range: lapString.range(of: "Lap \(laps.count):"))
+        
+        lapLabel.attributedText = lapAttributedString
         lapCounter = 0.0
-        lapTable.reloadData()
-    }
-    
-    @objc func updateCounter() {
-        counter += 0.01
-        lapCounter += 0.01
-        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
-        let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
-        
-        // Counter is imprecise, so `beepedForInterval` is used to make sure
-        // only one beep / vibrate is occuring per interval
-        if intervalTimeRemaining < 0.05 && !beepedForInterval {
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            AudioManager.shared.playBeep()
-            print("beep")
-            beepedForInterval = true
-        } else if intervalTimeRemaining > 0.95 {
-            beepedForInterval = false
-        }
-        
-        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
-        progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
-        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
-        timeLabel.attributedText = timeSting
+        lapsTable.reloadData()
     }
 }
 
@@ -162,8 +256,10 @@ extension TimerViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = lapTable.dequeueReusableCell(withIdentifier: "lapCell") as? LapCell {
+        if let cell = lapsTable.dequeueReusableCell(withIdentifier: "lapCell") as? LapCell {
             cell.lapNumberLabel.text = "Lap \(indexPath.row + 1)"
+            cell.lapNumberLabel.textColor = .white
+            cell.lapTimeLabel.textColor = .white
             let lapTime = UtilHelper.secondsToFormattedTime(
                 seconds: laps[indexPath.row]
             )

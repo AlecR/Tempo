@@ -17,13 +17,20 @@ class UtilHelper {
         return attributedTimeString
     }
     
-    // Converts a time in milliseconds into MM:SS.MS format
+    // Converts a time in milliseconds into H:MM:SS.MS format
     static func secondsToFormattedTime(seconds: TimeInterval) -> NSString {
         let ti = NSInteger(seconds)
         let ms = Int((seconds.truncatingRemainder(dividingBy: 1)) * 100)
         let seconds = ti % 60
         let minutes = (ti / 60) % 60
-        let timeString = NSString(format: "%d:%0.2d.%0.2d",minutes,seconds,ms)
+        let hours = (ti / 60) / 60
+        var timeString: NSString
+        if hours > 0 {
+            timeString = NSString(format: "%d:%0.2d:%0.2d.%0.2d",hours,minutes,seconds,ms)
+        } else {
+            timeString = NSString(format: "%d:%0.2d.%0.2d",minutes,seconds,ms)
+        }
+        
         return timeString
     }
     

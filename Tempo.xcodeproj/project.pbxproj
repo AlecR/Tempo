@@ -206,6 +206,8 @@
 		E342893C20321ABF004547E2 /* Tempo */ = {
 			isa = PBXGroup;
 			children = (
+				E348AD4D203E71B300CA762C /* Controller */,
+				E348AD4C203E71AF00CA762C /* Model */,
 				E3E6362D203A472100CA0513 /* View */,
 				E33D08182038C7B4005C3A88 /* Helpers */,
 				E313CBAF203733DD0018D727 /* Extensions */,
@@ -245,6 +247,20 @@
 				E342896920321ABF004547E2 /* PushNotificationPayload.apns */,
 			);
 			path = "Tempo WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		E348AD4C203E71AF00CA762C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E348AD4D203E71B300CA762C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E36B1A8E20333C3000F21269 /* Helpers */ = {
