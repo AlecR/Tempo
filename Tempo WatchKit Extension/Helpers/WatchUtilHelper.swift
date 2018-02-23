@@ -4,7 +4,7 @@ import UIKit
 
 class WatchUtilHelper {
     
-    static func attributedStringFromTimeInterval(interval: TimeInterval) -> NSAttributedString {
+    static func attributedTimeString(forInterval interval: TimeInterval, withFontSize size: CGFloat?) -> NSAttributedString {
         
         let ti = NSInteger(interval)
         let ms = Int((interval.truncatingRemainder(dividingBy: 1)) * 100)
@@ -12,18 +12,20 @@ class WatchUtilHelper {
         let minutes = (ti / 60) % 60
         let timeString = NSString(format: "%d:%0.2d.%0.2d",minutes,seconds,ms)
         
-        var labelFontSize: CGFloat
+        var defaultLabelSize: CGFloat
         switch WKInterfaceDevice.currentResolution() {
         case .Watch38mm:
-            labelFontSize = 27
+            defaultLabelSize = 27
         case .Watch42mm:
-            labelFontSize = 33
+            defaultLabelSize = 33
         case .Unknown:
-            labelFontSize = 27
+            defaultLabelSize = 27
         }
         
+        let fontSize = size ?? defaultLabelSize
+        
         let fontAttribute = [
-            NSAttributedStringKey.font: UIFont.monospacedDigitSystemFont(ofSize: labelFontSize, weight: .regular)
+            NSAttributedStringKey.font: UIFont.monospacedDigitSystemFont(ofSize: fontSize, weight: .regular)
         ]
         let attributedTimeString = NSAttributedString(
             string: timeString as String,

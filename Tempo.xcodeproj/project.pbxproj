@@ -33,6 +33,7 @@
 		E35392DF20388F05000BCAF6 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DE20388F05000BCAF6 /* TimerViewController.swift */; };
 		E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B1A8F20333C4D00F21269 /* AudioManager.swift */; };
 		E36B1A9220333FCA00F21269 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E36B1A9120333FCA00F21269 /* beep.wav */; };
+		E3937BF8203FB4B800FDDF36 /* LapTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3937BF7203FB4B800FDDF36 /* LapTableRow.swift */; };
 		E3AF0A72203E26CD00375795 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3AF0A71203E26CD00375795 /* beep.wav */; };
 		E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E537D22032A12C00A3D8A7 /* Double+Round.swift */; };
 		E3E537D32032A12C00A3D8A7 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E537D22032A12C00A3D8A7 /* Double+Round.swift */; };
@@ -117,6 +118,7 @@
 		E35392DE20388F05000BCAF6 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E36B1A8F20333C4D00F21269 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E36B1A9120333FCA00F21269 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		E3937BF7203FB4B800FDDF36 /* LapTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapTableRow.swift; sourceTree = "<group>"; };
 		E3AF0A71203E26CD00375795 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		E3E537D22032A12C00A3D8A7 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		E3E6362E203A474100CA0513 /* LapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapCell.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				E342896620321ABF004547E2 /* Assets.xcassets */,
 				E342896820321ABF004547E2 /* Info.plist */,
 				E342896920321ABF004547E2 /* PushNotificationPayload.apns */,
+				E3937BF7203FB4B800FDDF36 /* LapTableRow.swift */,
 			);
 			path = "Tempo WatchKit Extension";
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				E36B1A9020333C4D00F21269 /* AudioManager.swift in Sources */,
 				E308B443203485B200FB1EE5 /* WatchUtilHelper.swift in Sources */,
 				E308B4412034761500FB1EE5 /* WorkoutManager.swift in Sources */,
+				E3937BF8203FB4B800FDDF36 /* LapTableRow.swift in Sources */,
 				E33D08192038C7F6005C3A88 /* WKInterfaceDevice+WatchResolution.swift in Sources */,
 				E3B167F22032A2A200AD7F7A /* Double+Round.swift in Sources */,
 				E342897820322F2E004547E2 /* MainMenuController.swift in Sources */,

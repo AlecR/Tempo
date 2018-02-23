@@ -26,17 +26,17 @@
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                         </label>
                         <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
-                        <label width="136" height="26" alignment="center" text="Interval: 0.00 s" textAlignment="center" id="evM-we-q8p">
+                        <label width="136" height="17" alignment="center" text="Interval: 0.00 s" textAlignment="center" id="evM-we-q8p">
                             <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                         </label>
                         <group alignment="center" id="Gy4-vh-6Wl">
                             <items>
-                                <picker width="66" height="1" alignment="left" focusStyle="sequence" id="OhH-xh-MOI">
+                                <picker width="66" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="OhH-xh-MOI">
                                     <connections>
                                         <action selector="secondsPickerValueChanged:" destination="kUw-eH-fhd" id="fb1-6U-7ec"/>
                                     </connections>
                                 </picker>
-                                <picker width="66" height="1" alignment="left" focusStyle="sequence" id="SEy-26-H0q">
+                                <picker width="66" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="SEy-26-H0q">
                                     <connections>
                                         <action selector="millisecondsPickerValueChanged:" destination="kUw-eH-fhd" id="kHD-1g-U4D"/>
                                     </connections>
@@ -57,7 +57,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-16" y="345"/>
+            <point key="canvasLocation" x="-26" y="327"/>
         </scene>
         <!--TimerController-->
         <scene sceneID="aou-V4-d1y">
@@ -66,6 +66,10 @@
                     <items>
                         <group width="1" height="0.80000000000000004" alignment="center" backgroundImage="tempo-watch-progress-0" contentMode="scaleAspectFit" layout="vertical" spacing="0.0" id="ZyD-we-AlP">
                             <items>
+                                <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Interval" textAlignment="center" id="gOz-pG-gYR" userLabel="Interval:">
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="9"/>
+                                </label>
                                 <label width="1" alignment="center" verticalAlignment="center" text="0:00.00" textAlignment="center" id="C5X-oH-htA">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                     <variation key="device=watch38mm">
@@ -75,25 +79,60 @@
                                         <fontDescription key="font" type="system" pointSize="33"/>
                                     </variation>
                                 </label>
-                                <label width="1" alignment="center" verticalAlignment="center" text="Interval" textAlignment="center" id="gOz-pG-gYR" userLabel="Interval:">
+                                <separator width="1" alignment="left" hidden="YES" id="h0r-tn-E8b"/>
+                                <table alignment="left" id="6MU-q6-5AB">
+                                    <items>
+                                        <tableRow identifier="LapTableRow" id="dhZ-7o-cOc" customClass="LapTableRowController" customModule="Tempo_WatchKit_Extension">
+                                            <group key="rootItem" width="1" height="0.0" alignment="left" id="6c6-Jb-bCJ">
+                                                <items>
+                                                    <label width="0.5" height="1" alignment="left" text="Label" id="dgr-n1-9qE">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                    <label width="0.5" alignment="left" text="Label" textAlignment="right" id="xei-gP-q9H"/>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="lapNumberLabel" destination="dgr-n1-9qE" id="chX-Mf-xWV"/>
+                                                <outlet property="lapTimeLabel" destination="xei-gP-q9H" id="psi-mI-g9V"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                                <label alignment="center" verticalAlignment="center" text="Lap 0: 1:00.34" id="QOU-ZH-Y32">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="9"/>
                                 </label>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="0.0"/>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="pse-rF-fYY">
+                                    <connections>
+                                        <action selector="didTapTimerLoopGroup:" destination="AgC-eL-Hgc" id="A1S-dA-5Xs"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
-                        <button width="1" height="0.20000000000000001" alignment="center" verticalAlignment="bottom" hidden="YES" title="STOP" id="zaV-wW-f2F">
-                            <color key="backgroundColor" red="0.96844327450000001" green="0.13130376869999999" blue="0.11214169760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="stopPressed" destination="AgC-eL-Hgc" id="QK4-ly-BIl"/>
-                            </connections>
-                        </button>
+                        <group width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" hidden="YES" id="PjV-82-xHo">
+                            <items>
+                                <button width="0.5" height="1" alignment="left" verticalAlignment="bottom" title="STOP" id="zaV-wW-f2F">
+                                    <color key="backgroundColor" red="0.96844327450000001" green="0.13130376869999999" blue="0.11214169760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="stopButtonPressed" destination="AgC-eL-Hgc" id="QK4-ly-BIl"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" height="1" alignment="right" verticalAlignment="bottom" title="LAP" id="3rL-pP-ZDS">
+                                    <connections>
+                                        <action selector="lapButtonPressed" destination="AgC-eL-Hgc" id="HkP-QN-vUY"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                         <group width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" id="9KU-QD-XHF">
                             <items>
                                 <button width="0.5" height="1" alignment="left" verticalAlignment="bottom" title="START" id="LY4-Lz-k3g">
                                     <color key="backgroundColor" red="0.1137254902" green="0.72549019609999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="startPressed" destination="AgC-eL-Hgc" id="fh6-fC-jWA"/>
+                                        <action selector="startButtonPressed" destination="AgC-eL-Hgc" id="fh6-fC-jWA"/>
                                     </connections>
                                 </button>
                                 <button width="0.5" height="1" alignment="right" verticalAlignment="bottom" title="RESET" id="mYE-nX-TPN">
@@ -106,10 +145,14 @@
                     </items>
                     <connections>
                         <outlet property="intervalLabel" destination="gOz-pG-gYR" id="t9k-7l-Qdh"/>
+                        <outlet property="lapLabel" destination="QOU-ZH-Y32" id="dWv-x0-DEY"/>
+                        <outlet property="lapViewSeperator" destination="h0r-tn-E8b" id="nQW-3e-re3"/>
+                        <outlet property="lapViewTable" destination="6MU-q6-5AB" id="LvU-Xx-l63"/>
                         <outlet property="resetButton" destination="mYE-nX-TPN" id="CAu-7N-OPD"/>
                         <outlet property="startButton" destination="LY4-Lz-k3g" id="0Q2-XX-z2u"/>
                         <outlet property="startButtonGroup" destination="9KU-QD-XHF" id="rqa-jw-hkc"/>
                         <outlet property="stopButton" destination="zaV-wW-f2F" id="CBB-HW-2Gn"/>
+                        <outlet property="stopButtonGroup" destination="PjV-82-xHo" id="c3n-1c-UF4"/>
                         <outlet property="timeLabel" destination="C5X-oH-htA" id="JzC-BN-hEq"/>
                         <outlet property="timerLoopGroup" destination="ZyD-we-AlP" id="d3l-GN-MxM"/>
                     </connections>

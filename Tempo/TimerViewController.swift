@@ -60,7 +60,6 @@ class TimerViewController: UIViewController {
         lapButton.layer.cornerRadius = lapButton.frame.width / 2
         
         configureLapTable()
-        
     }
     
     private func configureTimerLabels() {
