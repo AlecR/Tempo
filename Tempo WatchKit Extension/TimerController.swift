@@ -169,6 +169,7 @@ class TimerController: WKInterfaceController {
             self.lapViewSeperator.setAlpha(1)
             self.lapViewTable.setAlpha(1)
         }
+        
     }
     
     func convertToIntervalView() {

@@ -22,28 +22,43 @@
             <objects>
                 <controller id="kUw-eH-fhd" customClass="MainMenuController" customModule="Tempo_WatchKit_Extension">
                     <items>
-                        <label width="1" alignment="center" text="TEMPO" textAlignment="center" id="OYM-eN-d6Y">
-                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
-                        </label>
-                        <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
-                        <label width="136" height="17" alignment="center" text="Interval: 0.00 s" textAlignment="center" id="evM-we-q8p">
-                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                        </label>
-                        <group alignment="center" id="Gy4-vh-6Wl">
+                        <group width="1" height="0.29999999999999999" alignment="left" layout="vertical" id="zQ0-2I-EnN">
                             <items>
-                                <picker width="66" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="OhH-xh-MOI">
+                                <label width="1" height="0.5" alignment="center" text="TEMPO" textAlignment="center" id="OYM-eN-d6Y">
+                                    <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                </label>
+                                <separator alignment="left" alpha="0.5" id="QEl-HE-78w"/>
+                                <label width="136" height="17" alignment="center" text="Interval: 0.00 s" textAlignment="center" id="evM-we-q8p">
+                                    <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" height="0.5" alignment="center" id="Gy4-vh-6Wl">
+                            <items>
+                                <picker width="0.29999999999999999" height="1" alignment="left" focusStyle="sequence" id="BgF-FU-oLW">
+                                    <connections>
+                                        <action selector="minutesPickerValueChanged:" destination="kUw-eH-fhd" id="OC3-Xr-1TM"/>
+                                    </connections>
+                                </picker>
+                                <label width="7" height="1" alignment="left" text=":" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="SC8-Nq-mtW">
+                                    <fontDescription key="font" type="boldSystem" pointSize="30"/>
+                                </label>
+                                <picker width="0.29999999999999999" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="OhH-xh-MOI">
                                     <connections>
                                         <action selector="secondsPickerValueChanged:" destination="kUw-eH-fhd" id="fb1-6U-7ec"/>
                                     </connections>
                                 </picker>
-                                <picker width="66" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="SEy-26-H0q">
+                                <label width="0.050000000000000003" height="72" alignment="left" verticalAlignment="bottom" text="." textAlignment="center" minimumScaleFactor="0.90000000000000002" id="mJN-fC-q9Y">
+                                    <fontDescription key="font" type="boldSystem" pointSize="30"/>
+                                </label>
+                                <picker width="0.29999999999999999" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="SEy-26-H0q">
                                     <connections>
                                         <action selector="millisecondsPickerValueChanged:" destination="kUw-eH-fhd" id="kHD-1g-U4D"/>
                                     </connections>
                                 </picker>
                             </items>
                         </group>
-                        <button width="1" alignment="left" verticalAlignment="bottom" title="BEGIN" id="UNG-nw-0iK">
+                        <button width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" title="BEGIN" id="UNG-nw-0iK">
                             <connections>
                                 <action selector="beginPressed" destination="kUw-eH-fhd" id="FhA-V5-pHe"/>
                             </connections>
@@ -53,6 +68,7 @@
                         <outlet property="beginButton" destination="UNG-nw-0iK" id="nCD-q8-gvQ"/>
                         <outlet property="intervalLabel" destination="evM-we-q8p" id="Bfe-Z0-aK1"/>
                         <outlet property="millisecondsPicker" destination="SEy-26-H0q" id="n1h-ty-G2c"/>
+                        <outlet property="minutesPicker" destination="BgF-FU-oLW" id="Fg2-PV-ZKX"/>
                         <outlet property="secondsPicker" destination="OhH-xh-MOI" id="2SM-xX-M14"/>
                     </connections>
                 </controller>
@@ -80,15 +96,15 @@
                                     </variation>
                                 </label>
                                 <separator width="1" alignment="left" hidden="YES" id="h0r-tn-E8b"/>
-                                <table alignment="left" id="6MU-q6-5AB">
+                                <table alignment="left" hidden="YES" id="6MU-q6-5AB">
                                     <items>
                                         <tableRow identifier="LapTableRow" id="dhZ-7o-cOc" customClass="LapTableRowController" customModule="Tempo_WatchKit_Extension">
-                                            <group key="rootItem" width="1" height="0.0" alignment="left" id="6c6-Jb-bCJ">
+                                            <group key="rootItem" width="1" height="24" alignment="left" id="6c6-Jb-bCJ">
                                                 <items>
-                                                    <label width="0.5" height="1" alignment="left" text="Label" id="dgr-n1-9qE">
+                                                    <label width="0.5" height="1" alignment="left" verticalAlignment="center" text="Label" id="dgr-n1-9qE">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </label>
-                                                    <label width="0.5" alignment="left" text="Label" textAlignment="right" id="xei-gP-q9H"/>
+                                                    <label width="0.5" alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="xei-gP-q9H"/>
                                                 </items>
                                             </group>
                                             <connections>
