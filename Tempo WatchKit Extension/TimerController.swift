@@ -110,10 +110,9 @@ class TimerController: WKInterfaceController {
         guard interval > 0 else { return }
         
         if intervalTimeRemaining < 0.05 && !beepedForInterval {
+            beepedForInterval = true
             WKInterfaceDevice.current().play(.failure)
             AudioManager.shared.playBeep()
-            AudioManager.shared.audioPlayer.prepareToPlay()
-            beepedForInterval = true
         } else if interval > 0.95 {
             beepedForInterval = false
         }

@@ -175,7 +175,12 @@ class TimerViewController: UIViewController {
     @IBAction func lapsTableButtonPressed(_ sender: Any) {
         lapsView.isHidden = false
         self.lapsViewTopConstraint.constant = 0
-        self.lapsTableHeight.constant = lapsTable.contentSize.height
+        if lapsTable.contentSize.height < (lapsView.frame.height / 2) - 16 {
+            self.lapsTableHeight.constant = lapsTable.contentSize.height
+        } else {
+            self.lapsTableHeight.constant = (lapsView.frame.height / 2) - 16
+        }
+        
         UIView.animate(
             withDuration: 0.5,
             delay: 0, 
@@ -222,6 +227,7 @@ class TimerViewController: UIViewController {
         progressImage.image = UIImage(named: "tempo-phone-progress-0")
         laps.removeAll()
         lapsTableButton.isEnabled = false
+        lapLabel.isHidden = true
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -234,7 +240,7 @@ class TimerViewController: UIViewController {
         lapLabel.isHidden = false
         lapsTableButton.isEnabled = true
         lapsTableButton.tintColor = .white
-        laps.append(lapCounter)
+        laps.append(lapCounter.rounded(toPlaces: 2))
         
         let lapString = "Lap \(laps.count): \(UtilHelper.secondsToFormattedTime(seconds: lapCounter))" as NSString
         let lapAttributedString = NSMutableAttributedString(string: lapString as String)
@@ -256,13 +262,7 @@ extension TimerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = lapsTable.dequeueReusableCell(withIdentifier: "lapCell") as? LapCell {
-            cell.lapNumberLabel.text = "Lap \(indexPath.row + 1)"
-            cell.lapNumberLabel.textColor = .white
-            cell.lapTimeLabel.textColor = .white
-            let lapTime = UtilHelper.secondsToFormattedTime(
-                seconds: laps[indexPath.row]
-            )
-            cell.lapTimeLabel.text = "\(lapTime)"
+            cell.configureCell(forLaps: laps, atIndex: indexPath.row)
             return cell
         } else {
             return UITableViewCell()
