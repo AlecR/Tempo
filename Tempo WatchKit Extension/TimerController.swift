@@ -47,7 +47,12 @@ class TimerController: WKInterfaceController {
             } else {
                 intervalString = "Interval: \(interval) s"
             }
-            intervalLabel.setText(intervalString)
+            
+            let intervalAttributedString = WatchUtilHelper.attributedString(
+                string: intervalString,
+                withBoldText: "Interval: "
+            )
+            intervalLabel.setAttributedText(intervalAttributedString)
         }
     }
     
@@ -83,18 +88,10 @@ class TimerController: WKInterfaceController {
         }
         laps.append(lapCounter)
         
-        let lapString = "Lap \(laps.count): " as NSString
-        let lapAttributedString = NSMutableAttributedString(
-            string: lapString as String
-        )
-        lapAttributedString.append(
-            WatchUtilHelper.attributedTimeString(forInterval: lapCounter, withFontSize: 9.0)
-        )
-        
-        let boldFontAttribute = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 9.0)]
-        lapAttributedString.addAttributes(
-            boldFontAttribute,
-            range: lapString.range(of: "Lap \(laps.count):")
+        let lapString = "Lap \(laps.count): \(WatchUtilHelper.timeString(forInterval: lapCounter))"
+        let lapAttributedString = WatchUtilHelper.attributedString(
+            string: lapString,
+            withBoldText: "Lap \(laps.count):"
         )
         updateLapViewTable()
         lapLabel.setAttributedText(lapAttributedString)
@@ -107,7 +104,7 @@ class TimerController: WKInterfaceController {
         let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
         let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
         
-        let timeSting = WatchUtilHelper.attributedTimeString(forInterval: counter, withFontSize: 27)
+        let timeSting = WatchUtilHelper.attributedTimeString(forInterval: counter)
         timeLabel.setAttributedText(timeSting)
         
         guard interval > 0 else { return }

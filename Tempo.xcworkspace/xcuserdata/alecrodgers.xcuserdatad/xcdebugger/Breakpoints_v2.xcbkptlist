@@ -22,16 +22,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tempo/TimerViewController.swift"
+            timestampString = "541045698.29321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "lapsTableButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tempo WatchKit Extension/MainMenuController.swift"
-            timestampString = "540535044.001961"
+            filePath = "Tempo WatchKit Extension/TimerController.swift"
+            timestampString = "541300258.292344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "updateLabelValue()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "lapButtonPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -32,14 +32,14 @@ class MainMenuController: WKInterfaceController {
         
         for seconds in 0...59 {
             let pickerItem = WKPickerItem()
-            pickerItem.title = "\(seconds)"
+            pickerItem.title =  NSString(format: "%0.2d", seconds) as String
             pickerItem.caption = "SEC"
             secondsValues.append(pickerItem)
         }
         
         for milliseconds in stride(from: 0, to: 96, by: 5) {
             let pickerItem = WKPickerItem()
-            pickerItem.title = "\(milliseconds)"
+            pickerItem.title =  NSString(format: "%0.2d", milliseconds) as String
             pickerItem.caption = "MS"
             millisecondsValues.append(pickerItem)
         }
@@ -79,7 +79,7 @@ class MainMenuController: WKInterfaceController {
         timeFormatter.minimumFractionDigits = 2
         timeFormatter.minimumIntegerDigits = 2
         
-        if interval > 60.0 {
+        if interval >= 60.0 {
             let intervalMinutes: Int = Int(interval / 60)
             let intervalSeconds = interval.truncatingRemainder(dividingBy: 60).rounded(toPlaces: 2)
             let intervalSecondsString = timeFormatter.string(from: NSNumber(value: intervalSeconds))
@@ -87,7 +87,13 @@ class MainMenuController: WKInterfaceController {
         } else {
             intervalString = "Interval: \(interval) s"
         }
-        intervalLabel.setText(intervalString)
+        
+        let intervalAttributedString = WatchUtilHelper.attributedString(
+            string: intervalString,
+            withBoldText: "Interval: ",
+            withFontSize: 15.0
+        )
+        intervalLabel.setAttributedText(intervalAttributedString)
         
     }
     
