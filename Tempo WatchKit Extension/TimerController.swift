@@ -78,7 +78,14 @@ class TimerController: WKInterfaceController {
     @IBAction func resetButtonPressed() {
         counter = 0
         timeLabel.setText("0:00.00")
-        timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-0")
+        laps.removeAll()
+        if displayingIntervalView {
+            timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-0")
+        } else {
+            updateLapViewTable()
+            lapViewSeperator.setWidth(1)
+        }
+        updateLapViewTable()
         timer.invalidate()
     }
     
@@ -101,7 +108,7 @@ class TimerController: WKInterfaceController {
     @objc func updateCounter() {
         counter += 0.01
         lapCounter += 0.01
-        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        
         let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
         
         let timeSting = WatchUtilHelper.attributedTimeString(forInterval: counter)
@@ -113,18 +120,10 @@ class TimerController: WKInterfaceController {
             beepedForInterval = true
             WKInterfaceDevice.current().play(.failure)
             AudioManager.shared.playBeep()
-        } else if interval > 0.95 {
+        } else if intervalTimeRemaining > 0.95 {
             beepedForInterval = false
         }
-        
-        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
-        if displayingIntervalView {
-            timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-\(percentComplete)")
-        } else {
-            lapViewSeperator.setRelativeWidth(CGFloat(percentComplete) / 100.0, withAdjustment: 0)
-        }
-        
-        
+        updateProgressTracker()
     }
     
     func updateLapViewTable() {
@@ -142,33 +141,41 @@ class TimerController: WKInterfaceController {
         }
     }
     
+    
+    @IBAction func didTapLapTable(_ sender: Any) {
+        convertToIntervalView()
+    }
+    
     @IBAction func didTapTimerLoopGroup(_ sender: Any) {
         if displayingIntervalView {
             convertToLapView()
-            displayingIntervalView = false
         } else {
             convertToIntervalView()
-            displayingIntervalView = true
         }
     }
     
     func convertToLapView() {
+        displayingIntervalView = false
         intervalLabel.setHidden(true)
         lapLabel.setHidden(true)
         timerLoopGroup.setBackgroundImage(nil)
+        
         lapViewSeperator.setAlpha(0)
         lapViewSeperator.setHidden(false)
+        
         lapViewTable.setAlpha(0)
         lapViewTable.setHidden(false)
         animate(withDuration: 1) {
             self.timeLabel.setVerticalAlignment(.top)
+            self.timerLoopGroup.setRelativeHeight(0.25, withAdjustment: 0)
             self.lapViewSeperator.setAlpha(1)
             self.lapViewTable.setAlpha(1)
         }
-        
+        updateProgressTracker()
     }
     
     func convertToIntervalView() {
+        displayingIntervalView = true
         intervalLabel.setHidden(false)
         if laps.count > 0 {
             lapLabel.setHidden(false)
@@ -178,11 +185,24 @@ class TimerController: WKInterfaceController {
             self.timeLabel.setVerticalAlignment(.center)
             self.lapViewSeperator.setAlpha(0)
             self.lapViewTable.setAlpha(0)
+            self.timerLoopGroup.setRelativeHeight(0.8, withAdjustment: 0)
         }
         lapViewTable.setHidden(true)
         lapViewSeperator.setHidden(true)
-        timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-0")
-        
+        updateProgressTracker()
+    }
+    
+    private func updateProgressTracker() {
+        guard interval > 0 else { return }
+        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
+        if displayingIntervalView {
+            print("Loop")
+            timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-\(percentComplete)")
+        } else {
+            print("Bar")
+            lapViewSeperator.setRelativeWidth(CGFloat(percentComplete) / 100.0, withAdjustment: 0)
+        }
     }
     
     override func willActivate() {

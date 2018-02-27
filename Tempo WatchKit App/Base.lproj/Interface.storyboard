@@ -35,23 +35,23 @@
                         </group>
                         <group width="1" height="0.5" alignment="center" id="Gy4-vh-6Wl">
                             <items>
-                                <picker width="0.29999999999999999" height="1" alignment="left" focusStyle="sequence" id="BgF-FU-oLW">
+                                <picker width="0.28000000000000003" height="1" alignment="center" focusStyle="sequence" id="BgF-FU-oLW">
                                     <connections>
                                         <action selector="minutesPickerValueChanged:" destination="kUw-eH-fhd" id="OC3-Xr-1TM"/>
                                     </connections>
                                 </picker>
-                                <label width="7" height="1" alignment="left" text=":" textAlignment="center" minimumScaleFactor="0.90000000000000002" id="SC8-Nq-mtW">
+                                <label width="0.050000000000000003" height="0.94999999999999996" alignment="center" verticalAlignment="bottom" text=":" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="SC8-Nq-mtW">
                                     <fontDescription key="font" type="boldSystem" pointSize="30"/>
                                 </label>
-                                <picker width="0.29999999999999999" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="OhH-xh-MOI">
+                                <picker width="0.28000000000000003" height="1" alignment="center" verticalAlignment="center" focusStyle="sequence" id="OhH-xh-MOI">
                                     <connections>
                                         <action selector="secondsPickerValueChanged:" destination="kUw-eH-fhd" id="fb1-6U-7ec"/>
                                     </connections>
                                 </picker>
-                                <label width="0.050000000000000003" height="72" alignment="left" verticalAlignment="bottom" text="." textAlignment="center" minimumScaleFactor="0.90000000000000002" id="mJN-fC-q9Y">
+                                <label width="0.050000000000000003" height="0.90000000000000002" alignment="center" verticalAlignment="bottom" text="." textAlignment="center" minimumScaleFactor="0.59999999999999998" id="mJN-fC-q9Y">
                                     <fontDescription key="font" type="boldSystem" pointSize="30"/>
                                 </label>
-                                <picker width="0.29999999999999999" height="0.94999999999999996" alignment="left" verticalAlignment="center" focusStyle="sequence" id="SEy-26-H0q">
+                                <picker width="0.28000000000000003" height="1" alignment="center" verticalAlignment="center" focusStyle="sequence" id="SEy-26-H0q">
                                     <connections>
                                         <action selector="millisecondsPickerValueChanged:" destination="kUw-eH-fhd" id="kHD-1g-U4D"/>
                                     </connections>
@@ -82,7 +82,7 @@
                     <items>
                         <group width="1" height="0.80000000000000004" alignment="center" backgroundImage="tempo-watch-progress-0" contentMode="scaleAspectFit" layout="vertical" spacing="0.0" id="ZyD-we-AlP">
                             <items>
-                                <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Interval" textAlignment="center" id="gOz-pG-gYR" userLabel="Interval:">
+                                <label width="1" alignment="center" verticalAlignment="center" text="Interval" textAlignment="center" id="gOz-pG-gYR" userLabel="Interval:">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="9"/>
                                 </label>
@@ -96,25 +96,7 @@
                                     </variation>
                                 </label>
                                 <separator width="1" alignment="left" hidden="YES" id="h0r-tn-E8b"/>
-                                <table alignment="left" hidden="YES" id="6MU-q6-5AB">
-                                    <items>
-                                        <tableRow identifier="LapTableRow" id="dhZ-7o-cOc" customClass="LapTableRowController" customModule="Tempo_WatchKit_Extension">
-                                            <group key="rootItem" width="1" height="24" alignment="left" id="6c6-Jb-bCJ">
-                                                <items>
-                                                    <label width="0.5" height="1" alignment="left" verticalAlignment="center" text="Label" id="dgr-n1-9qE">
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
-                                                    </label>
-                                                    <label width="0.5" alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="xei-gP-q9H"/>
-                                                </items>
-                                            </group>
-                                            <connections>
-                                                <outlet property="lapNumberLabel" destination="dgr-n1-9qE" id="chX-Mf-xWV"/>
-                                                <outlet property="lapTimeLabel" destination="xei-gP-q9H" id="psi-mI-g9V"/>
-                                            </connections>
-                                        </tableRow>
-                                    </items>
-                                </table>
-                                <label alignment="center" verticalAlignment="center" text="Lap 0: 1:00.34" id="QOU-ZH-Y32">
+                                <label alignment="center" verticalAlignment="center" hidden="YES" text="Lap 0: 1:00.34" id="QOU-ZH-Y32">
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="9"/>
                                 </label>
@@ -128,6 +110,31 @@
                             </gestureRecognizers>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
+                        <table alignment="center" hidden="YES" id="6MU-q6-5AB">
+                            <items>
+                                <tableRow identifier="LapTableRow" selectable="NO" id="dhZ-7o-cOc" customClass="LapTableRowController" customModule="Tempo_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="6c6-Jb-bCJ">
+                                        <items>
+                                            <label width="0.5" height="1" alignment="left" verticalAlignment="center" text="Label" id="dgr-n1-9qE">
+                                                <fontDescription key="font" type="system" pointSize="16"/>
+                                            </label>
+                                            <label width="0.5" alignment="right" verticalAlignment="center" text="Label" textAlignment="right" id="xei-gP-q9H"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="lapNumberLabel" destination="dgr-n1-9qE" id="chX-Mf-xWV"/>
+                                        <outlet property="lapTimeLabel" destination="xei-gP-q9H" id="psi-mI-g9V"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="Gsu-sq-4v3">
+                                    <connections>
+                                        <action selector="didTapLapTable:" destination="AgC-eL-Hgc" id="g5V-vW-lM2"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                        </table>
                         <group width="1" height="0.20000000000000001" alignment="left" verticalAlignment="bottom" hidden="YES" id="PjV-82-xHo">
                             <items>
                                 <button width="0.5" height="1" alignment="left" verticalAlignment="bottom" title="STOP" id="zaV-wW-f2F">
