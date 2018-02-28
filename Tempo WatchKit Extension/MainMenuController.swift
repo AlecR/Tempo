@@ -27,7 +27,6 @@ class MainMenuController: WKInterfaceController {
             pickerItem.title = "\(minutes)"
             pickerItem.caption = "MIN"
             minutesValues.append(pickerItem)
-            
         }
         
         for seconds in 0...59 {
@@ -98,7 +97,7 @@ class MainMenuController: WKInterfaceController {
     }
     
     @IBAction func beginPressed() {
-        let beepInterval = secondsValue + millisecondsValue
+        let beepInterval = (minutesValue  * 60) + secondsValue + millisecondsValue
         presentController(withName: "TimerController", context: beepInterval)
     }
 }

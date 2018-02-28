@@ -197,10 +197,8 @@ class TimerController: WKInterfaceController {
         let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
         let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
         if displayingIntervalView {
-            print("Loop")
             timerLoopGroup.setBackgroundImageNamed("tempo-watch-progress-\(percentComplete)")
         } else {
-            print("Bar")
             lapViewSeperator.setRelativeWidth(CGFloat(percentComplete) / 100.0, withAdjustment: 0)
         }
     }

@@ -15,6 +15,7 @@
 		E308B443203485B200FB1EE5 /* WatchUtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308B442203485B200FB1EE5 /* WatchUtilHelper.swift */; };
 		E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313CBB0203733F10018D727 /* UIPickerView+Label.swift */; };
 		E31D255B203E46BC000FDCA0 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D255A203E46BC000FDCA0 /* AudioManager.swift */; };
+		E326877D20464C82003D4823 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E326877C20464C82003D4823 /* HealthKit.framework */; };
 		E33D08192038C7F6005C3A88 /* WKInterfaceDevice+WatchResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */; };
 		E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D081A2038C857005C3A88 /* UtilHelper.swift */; };
 		E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893D20321ABF004547E2 /* AppDelegate.swift */; };
@@ -95,6 +96,8 @@
 		E308B442203485B200FB1EE5 /* WatchUtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUtilHelper.swift; sourceTree = "<group>"; };
 		E313CBB0203733F10018D727 /* UIPickerView+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Label.swift"; sourceTree = "<group>"; };
 		E31D255A203E46BC000FDCA0 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		E326877B20464C82003D4823 /* Tempo WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tempo WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		E326877C20464C82003D4823 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		E33D081A2038C857005C3A88 /* UtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilHelper.swift; sourceTree = "<group>"; };
 		E342893A20321ABF004547E2 /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342893D20321ABF004547E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D36C8D040E64DF53AA00FCD3 /* Pods_Tempo_WatchKit_Extension.framework in Frameworks */,
+				E326877D20464C82003D4823 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +243,7 @@
 		E342895F20321ABF004547E2 /* Tempo WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E326877B20464C82003D4823 /* Tempo WatchKit Extension.entitlements */,
 				E36B1A8E20333C3000F21269 /* Helpers */,
 				E3E537D12032A11800A3D8A7 /* Extensions */,
 				E342897720322F2E004547E2 /* MainMenuController.swift */,
@@ -296,6 +301,7 @@
 		E96D9A18B072C4851E27AE1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E326877C20464C82003D4823 /* HealthKit.framework */,
 				263511DDB30533496F71F807 /* Pods_Tempo.framework */,
 				8E29EA97CF7083E3E3B39D4A /* Pods_Tempo_WatchKit_App.framework */,
 				3CDF85D834655F289FB34490 /* Pods_Tempo_WatchKit_Extension.framework */,
@@ -381,6 +387,11 @@
 					E342893920321ABF004547E2 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 					E342894B20321ABF004547E2 = {
 						CreatedOnToolsVersion = 9.2;
@@ -399,6 +410,9 @@
 								enabled = 0;
 							};
 							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.HealthKit.watchos = {
 								enabled = 1;
 							};
 						};
@@ -777,12 +791,15 @@
 			baseConfigurationReference = 07A6B660D14AD5CBFA5E30A4 /* Pods-Tempo WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit Extension/Tempo WatchKit Extension.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				INFOPLIST_FILE = "Tempo WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AlecR.Tempo.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -796,12 +813,15 @@
 			baseConfigurationReference = DB84535AA2B52512D85A87FD /* Pods-Tempo WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Tempo WatchKit Extension/Tempo WatchKit Extension.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q7UMUTU9B;
 				INFOPLIST_FILE = "Tempo WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AlecR.Tempo.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
