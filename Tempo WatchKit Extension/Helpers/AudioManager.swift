@@ -12,7 +12,7 @@ class AudioManager {
     func preparePlayer() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryAmbient, with: .duckOthers)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
         } catch {
             print("🔊 Audio Session couldn't be created")
         }

@@ -24,9 +24,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var lapsTable: UITableView!
     @IBOutlet weak var lapsTableHeight: NSLayoutConstraint!
     @IBOutlet weak var blurView: UIView!
-    
-    private var timer: Timer!
-    private var counter = 0.0
+
     private var lapCounter = 0.0
     var interval = 0.0
     var laps = [Double]()
@@ -41,6 +39,8 @@ class TimerViewController: UIViewController {
         
         lapsTable.delegate = self
         lapsTable.dataSource = self
+        
+        TempoTimer.shared.delegate = self
         
         lapsTableButton.isEnabled = false
         lapsTableButton.setTitleColor(.lightGray, for: .disabled)
@@ -132,43 +132,12 @@ class TimerViewController: UIViewController {
         
     }
     
-    /*
-     Handles updates for each tick of the timer
-     */
-    @objc func updateCounter() {
-        counter += 0.01
-        lapCounter += 0.01
-        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
-        let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
-        
-        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
-        timeLabel.attributedText = timeSting
-        
-        guard interval > 0 else { return }
-        
-        // Counter is imprecise, so `beepedForInterval` is used to make sure
-        // only one beep / vibrate is occuring per interval
-        if intervalTimeRemaining < 0.05 && !beepedForInterval {
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            AudioManager.shared.playBeep()
-            beepedForInterval = true
-        } else if intervalTimeRemaining > 0.95 {
-            beepedForInterval = false
-        }
-        
-        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
-        progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
-        
-    }
-    
     // =====================================
     // IBActions
     // =====================================
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        if let timer = timer {
-            timer.invalidate()
-        }
+        TempoTimer.shared.stop()
         dismiss(animated: true, completion: nil)
     }
     
@@ -209,20 +178,17 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: Any) {
-        timer = Timer.scheduledTimer(
-            timeInterval: 0.01,
-            target: self,
-            selector: #selector(updateCounter),
-            userInfo: nil,
-            repeats: true
+        LocalNotificationManager.shared.scheduleSoundNotifications(
+            withSecondsInterval: interval
         )
-        timer.fire()
+        TempoTimer.shared.start()
         startStackView.isHidden = true
         stopStackView.isHidden = false
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
-        counter = 0
+        TempoTimer.shared.resetTimer()
         timeLabel.text = "0:00.00"
         progressImage.image = UIImage(named: "tempo-phone-progress-0")
         laps.removeAll()
@@ -231,9 +197,10 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
-        timer.invalidate()
+        TempoTimer.shared.stop()
         startStackView.isHidden = false
         stopStackView.isHidden = true
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @IBAction func lapButtonPressed(_ sender: Any) {
@@ -251,6 +218,32 @@ class TimerViewController: UIViewController {
         lapLabel.attributedText = lapAttributedString
         lapCounter = 0.0
         lapsTable.reloadData()
+    }
+}
+
+extension TimerViewController: TempoTimerDelegate {
+    func timerDidFire(withCounter counter: Double) {
+        lapCounter += 0.01
+        let intervalProgress = counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+        let intervalTimeRemaining = interval - counter.truncatingRemainder(dividingBy: interval).rounded(toPlaces: 2)
+
+        let timeSting = UtilHelper.attributedStringFromTimeInterval(interval: counter)
+        timeLabel.attributedText = timeSting
+
+        guard interval > 0 else { return }
+
+        // Counter is imprecise, so `beepedForInterval` is used to make sure
+        // only one beep / vibrate is occuring per interval
+        if intervalTimeRemaining < 0.05 && !beepedForInterval {
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            AudioManager.shared.playBeep()
+            beepedForInterval = true
+        } else if intervalTimeRemaining > 0.95 {
+            beepedForInterval = false
+        }
+
+        let percentComplete = Int(((abs(intervalProgress) / interval)) * 100)
+        progressImage.image = UIImage(named: "tempo-phone-progress-\(percentComplete)")
     }
 }
 

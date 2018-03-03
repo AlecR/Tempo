@@ -16,6 +16,9 @@
 		E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313CBB0203733F10018D727 /* UIPickerView+Label.swift */; };
 		E31D255B203E46BC000FDCA0 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31D255A203E46BC000FDCA0 /* AudioManager.swift */; };
 		E326877D20464C82003D4823 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E326877C20464C82003D4823 /* HealthKit.framework */; };
+		E326878120466392003D4823 /* TempoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326878020466392003D4823 /* TempoTimer.swift */; };
+		E32687832046FCD0003D4823 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32687822046FCD0003D4823 /* LocalNotificationManager.swift */; };
+		E326878520470617003D4823 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326878420470617003D4823 /* Date+Milliseconds.swift */; };
 		E33D08192038C7F6005C3A88 /* WKInterfaceDevice+WatchResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35392DA2037DC60000BCAF6 /* WKInterfaceDevice+WatchResolution.swift */; };
 		E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D081A2038C857005C3A88 /* UtilHelper.swift */; };
 		E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342893D20321ABF004547E2 /* AppDelegate.swift */; };
@@ -98,6 +101,9 @@
 		E31D255A203E46BC000FDCA0 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E326877B20464C82003D4823 /* Tempo WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tempo WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		E326877C20464C82003D4823 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		E326878020466392003D4823 /* TempoTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoTimer.swift; sourceTree = "<group>"; };
+		E32687822046FCD0003D4823 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		E326878420470617003D4823 /* Date+Milliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Milliseconds.swift"; sourceTree = "<group>"; };
 		E33D081A2038C857005C3A88 /* UtilHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilHelper.swift; sourceTree = "<group>"; };
 		E342893A20321ABF004547E2 /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342893D20321ABF004547E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				E313CBB0203733F10018D727 /* UIPickerView+Label.swift */,
+				E326878420470617003D4823 /* Date+Milliseconds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,6 +190,8 @@
 			children = (
 				E33D081A2038C857005C3A88 /* UtilHelper.swift */,
 				E31D255A203E46BC000FDCA0 /* AudioManager.swift */,
+				E326878020466392003D4823 /* TempoTimer.swift */,
+				E32687822046FCD0003D4823 /* LocalNotificationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -219,8 +228,6 @@
 				E313CBAF203733DD0018D727 /* Extensions */,
 				E3AF0A71203E26CD00375795 /* beep.wav */,
 				E342893D20321ABF004547E2 /* AppDelegate.swift */,
-				E342893F20321ABF004547E2 /* MainMenuViewController.swift */,
-				E35392DE20388F05000BCAF6 /* TimerViewController.swift */,
 				E342894120321ABF004547E2 /* Main.storyboard */,
 				E342894620321ABF004547E2 /* LaunchScreen.storyboard */,
 				E342894420321ABF004547E2 /* Assets.xcassets */,
@@ -267,6 +274,8 @@
 		E348AD4D203E71B300CA762C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E342893F20321ABF004547E2 /* MainMenuViewController.swift */,
+				E35392DE20388F05000BCAF6 /* TimerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -388,6 +397,9 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.HealthKit = {
 								enabled = 0;
 							};
@@ -609,12 +621,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32687832046FCD0003D4823 /* LocalNotificationManager.swift in Sources */,
 				E35392DF20388F05000BCAF6 /* TimerViewController.swift in Sources */,
 				E342894020321ABF004547E2 /* MainMenuViewController.swift in Sources */,
 				E31D255B203E46BC000FDCA0 /* AudioManager.swift in Sources */,
+				E326878120466392003D4823 /* TempoTimer.swift in Sources */,
 				E313CBB1203733F10018D727 /* UIPickerView+Label.swift in Sources */,
 				E3E537D32032A12C00A3D8A7 /* Double+Round.swift in Sources */,
 				E342893E20321ABF004547E2 /* AppDelegate.swift in Sources */,
+				E326878520470617003D4823 /* Date+Milliseconds.swift in Sources */,
 				E3E6362F203A474100CA0513 /* LapCell.swift in Sources */,
 				E33D081B2038C857005C3A88 /* UtilHelper.swift in Sources */,
 			);
